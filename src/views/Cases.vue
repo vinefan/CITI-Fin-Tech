@@ -52,21 +52,23 @@ import InsuranceCase from "../components/InsuranceCase"
         methods: {
             search: function() {
                 var data = { "proj_name": this.input };
-                alert(data.proj_name)
+                
             }
         },
         // 组件被挂载后执行
         mounted() {
             this.axios
-                .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+                .get('http://192.168.1.101:8080/censor')
                 .then(response => {
                       this.error = true;
-                      this.items = response
+                      this.items = response.data;
+                    //   alert(this.items[0].project_id)
                 })
                 .catch(error => {
                     
                     this.msg = error
                 })
+
         }
     }
 </script>
