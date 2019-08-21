@@ -13,10 +13,9 @@
         store,
         methods: {
             add(){
-                  console.log("add event from info !");
+                 
                   store.commit('increase','vine');
-                  console.log("after increase action !");
-                  console.log(store.state.count)
+                  
             }
         }
   }
