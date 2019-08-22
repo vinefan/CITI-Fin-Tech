@@ -17,14 +17,16 @@
             </el-row>
             
         </div>
-        <div v-if="error">
+        
+        
+        <div v-if="!error">
             <insurance-case 
                 v-for="(item, index) in items" 
                 v-bind:key="index" 
                 v-bind:item="item">
             </insurance-case>
         </div>
-        <div id="!error">
+        <div id="error">
             {{msg}} 
         </div>
     </div>
@@ -51,8 +53,20 @@ import InsuranceCase from "../components/InsuranceCase"
         },
         methods: {
             search: function() {
-                var data = { "proj_name": this.input };
-                
+                var project = { "proj_name": this.input };
+                this.axios({
+                    method: 'get',
+                    url: 'http://192.168.1.101:8080/search',
+                    data: project
+                    })
+                    .then(function (response){
+                        this.items = response
+                        // console.log("search successful !")
+                    })
+                    .catch(function (error){
+                        this.error = false
+                        this.msg = error
+                    })
             }
         },
         // 组件被挂载后执行
@@ -62,7 +76,7 @@ import InsuranceCase from "../components/InsuranceCase"
                 .then(response => {
                       this.error = true;
                       this.items = response.data;
-                    //   alert(this.items[0].project_id)
+                      this.msg = 'successful'
                 })
                 .catch(error => {
                     
