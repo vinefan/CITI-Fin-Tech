@@ -25,7 +25,7 @@
                       id: 2,
                       style: ["primary","#59beec"],
                       title: "真公益",
-                      icons: ["l-icon-document","el-icon-service","el-icon-sunny"],
+                      icons: ["el-icon-document","el-icon-service","el-icon-sunny"],
                       sub_title: ["补偿机制","履约保障","爱心有效传递"]
                   },
                   {
