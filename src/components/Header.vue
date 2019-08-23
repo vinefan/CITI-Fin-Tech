@@ -55,13 +55,14 @@
 
 <style scoped>
     #header{
-        height: 90px;
+        
         background-color: #eeeeee;
-
         position: fixed;
         width: 100%;
         left: 0;
         top: 0;
+
+
         /* 顶部header透明 */
         filter: alpha(opacity=80);
         /* IE */
@@ -69,6 +70,8 @@
         /* Firefox */
         opacity: 0.8;
         /* others */
+
+
 
     }
     #logo{
@@ -90,23 +93,24 @@
         display: inline-block;
     }
     #menu{
+        
         display: inline-block;
         /* float: right; */
         font-size: 22px;
         width: 340px;
         height: 90%;
-        margin-left: 40%;
         color: #333
     }
 
     a{
-        color: #333;
+        color: #111;
         display: inline-block;
         width: 105px;
     }
 
     .active{
-        color: steelblue;
+        color: rgb(37, 89, 168);
         font-size: 23px;
+        font-weight: 800;
     }
 </style>
