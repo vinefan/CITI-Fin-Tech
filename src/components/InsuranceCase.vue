@@ -12,6 +12,7 @@
           <li>
             <span>[项目简介]</span>
             {{item.project.project_reason}}
+
           </li>
           <li>
             <span>[发布人]</span>
@@ -26,6 +27,9 @@
           </li>
         </ul>
       </div>
+
+      <!-- 撑起父元素 -->
+      <div style="clear:both;"></div>
   </div>
 </template>
 
@@ -39,11 +43,13 @@ export default {
 <style scoped>
 .case{
   width: 90%;
-  height: 300px;
+
+  /* 设置最小宽度 */
+  min-width: 880px;
   background-color: #eee;
   margin: 100px auto;
   border-radius: 10px;
- 
+  padding: 30px 20px;
 }
 
 /* 实现了图片等比缩放至200px, 居中显示, 不重复 */
@@ -53,17 +59,17 @@ export default {
   height: 200px;
   background: url("../assets/cat.jpg") center center no-repeat;
   background-size: 200px;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: 20px;
 }
 
 .content{
   float:right;
   width: 600px;
-  height: 260px;
+  /* height: 260px; 去掉高度设置，让高度随内容变化 */
   background-color: #ddd;
-  margin-top: 20px;
   margin-right: 40px;
+  margin-top: 20px;
   border-left: #aaa 1px solid;
   opacity: 0.8;
 }

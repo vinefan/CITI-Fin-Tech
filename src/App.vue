@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <div class="headerWrapper">
-      <Header></Header>
-    </div>
+    <Header></Header>
+
     <Banner></Banner>
+    
     <div id="nav">
       <el-menu mode="horizontal"
                router="true"
@@ -52,6 +52,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #888888;
+    
   }
 
   /* 没有效果，Chrome显示还是20px*/
@@ -75,17 +76,6 @@
 
   }
 
-  /* header固定到顶部 */
-  .headerWrapper{
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    /* 顶部header透明 */
-    filter: alpha(opacity=80); /* IE */ 
-    -moz-opacity: 0.8; /* Firefox */
-    opacity: 0.8; /* others */
-  }
 
   #detail {
     margin-left: 20%;
