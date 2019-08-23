@@ -9,7 +9,8 @@
                router="true"
                class="nav"
                active-text-color="#3a83cc"
-               default-active="/">
+               :default-active="active_route"
+              >
         <el-menu-item index="/" id="detail">产品介绍</el-menu-item>
         <el-menu-item index="/proposal">保险条例</el-menu-item>
         <el-menu-item index="/claim">理赔流程</el-menu-item>
@@ -32,6 +33,14 @@
       Footer,
       Banner
     },
+    data: function(){
+      return{
+        active_route: ""
+      }
+    },
+    mounted(){
+      this.active_route = this.$route.path
+    }
       
   }
 </script>
