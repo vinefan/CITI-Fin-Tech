@@ -6,7 +6,7 @@
         </div>
         <div id="menu">
             <template v-for="(item, index) in items">
-                <a  href="/" 
+                <a  :href="item.href" 
                     :key="index" 
                     @mouseover="changeColor(item)" 
                     @mouseout="changeColor(item)"
@@ -28,16 +28,26 @@
                 items: [{
                         icon: "el-icon-tickets",
                         title: "投保 | ",
-                        active: false
+                        active: false,
+                        href: "insure.html"
                     },
                     {
                         icon: "el-icon-paperclip",
                         title: "申述 | ",
-                        active: false
-                    }, {
-                        icon: "el-icon-edit-outline",
-                        title: "投票",
-                        active: false
+                        active: false,
+                        href: "/"
+                    }, 
+                    {
+                        icon: "el-icon-s-check",
+                        title: "审核 |",
+                        active: false,
+                        href: "/"
+                    },
+                    {
+                        icon: "el-icon-view",
+                        title: "查询 |",
+                        active: false,
+                        href: "/"
                     }
                 ],
 
@@ -97,7 +107,7 @@
         display: inline-block;
         /* float: right; */
         font-size: 22px;
-        width: 340px;
+        width: 500px;
         height: 90%;
         color: #333
     }

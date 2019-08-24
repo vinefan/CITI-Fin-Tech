@@ -1,9 +1,10 @@
 <template>
   <div id="app">
+    <!-- 页头 -->
     <Header></Header>
-
+    <!-- banner -->
     <Banner></Banner>
-    
+    <!-- 导航栏 -->
     <div id="nav">
       <el-menu mode="horizontal"
                router="true"
@@ -17,7 +18,9 @@
         <el-menu-item index="/cases">被保案例</el-menu-item>
       </el-menu>
     </div>
+    <!-- 导航栏对应视图 -->
     <router-view></router-view>
+    <!-- 页脚 -->
     <Footer></Footer>
   </div>
 </template>
