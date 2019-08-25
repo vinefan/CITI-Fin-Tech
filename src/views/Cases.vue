@@ -100,10 +100,11 @@ import InsuranceCase from "../components/InsuranceCase"
         // 组件被挂载后执行
         mounted() {
             this.axios
-                .get('http://192.168.1.101:8080/censor')
+                .get('http://192.168.1.106:8080/centor')
                 .then(response => {
                       this.error = true;
                       this.items = response.data;
+                      console.log(this.items[0].project_id);    
                       this.msg = 'successful'
                 })
                 .catch(error => {

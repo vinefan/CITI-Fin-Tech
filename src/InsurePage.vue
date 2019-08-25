@@ -4,17 +4,28 @@
        <Header></Header>
 
        <!-- 步骤条 -->
-        <el-steps :active="0" simple>
+        <el-steps :active="step" simple>
             <el-step title="估价" icon="el-icon-link" class="gujia"></el-step>
             <el-step title="立即投保" icon="el-icon-collection-tag"></el-step>
             <el-step title="提交保单" icon="el-icon-mouse"></el-step>
         </el-steps>
 
        <!-- 估价表单 -->
-        <CalForm :calPriceInfo="calPriceInfo"></CalForm>
-        <!-- 撑起父元素 -->
-      <div style="clear:both;"></div>
-        
+        <CalForm 
+            :calPriceInfo="calPriceInfo"
+            v-on:showPrice="showPrice"></CalForm>
+
+        <!-- 估价信息展示 -->
+        <ShowPrice 
+            v-if="true"
+            v-on:showInsurance="showInsurance"></ShowPrice>
+
+        <!-- 保单 v-if="isInsuring" -->
+        <Insurance
+            v-if="isInsuring"
+            :calPriceInfo="calPriceInfo"
+            :fee="insurancePrice"
+            :org_code="org_code"></Insurance>
    </div>
 </template>
 
@@ -22,23 +33,48 @@
 
 import Header from './components/InsureHeader'
 import CalForm from './components/CalForm'
+import ShowPrice from './components/ShowPrice'
+import Insurance from './components/InsuranceForm'
 
 export default {
     name: "InsurePage",
     components: {
         Header,
-        CalForm
+        CalForm,
+        ShowPrice,
+        Insurance
     },
     data: function(){
         return{
             calPriceInfo: {
-                organzination: "",
+                organzination: "lala",
                 time: 0,
-                money: ""
+                money: "100"
             },
             isCalPrice: false,
             isInsuring: false,
             insurancePrice: 0,
+            step: 0,
+            org_code: "cxy",
+
+        }
+    },
+    methods: {
+        // function 缺参数
+        showPrice: function(data){
+            // 处理data -》 calPriceInfo insurancePrice 
+            this.calPriceInfo = data.calPriceInfo;
+            this.org_code = data.org_code;
+            this.insurancePrice = data.fee;
+            // 显示showPrice组件
+            this.isCalPrice = true;
+            // 步骤条改变
+            this.step = 1;
+       
+        },
+        showInsurance: function(){
+            this.isInsuring = true;
+            this.step = 2;
         }
     }
 
