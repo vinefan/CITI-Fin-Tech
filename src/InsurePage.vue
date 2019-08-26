@@ -22,7 +22,7 @@
 
         <!-- 保单 v-if="isInsuring" -->
         <Insurance
-            v-if="isInsuring"
+            v-if="true"
             :calPriceInfo="calPriceInfo"
             :fee="insurancePrice"
             :org_code="org_code"></Insurance>
@@ -75,6 +75,9 @@ export default {
         showInsurance: function(){
             this.isInsuring = true;
             this.step = 2;
+        },
+        lastStep: function(){
+            this.step = 3;
         }
     }
 

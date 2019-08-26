@@ -178,14 +178,58 @@
 		</div>
 
 		<!-- 保险金额 保险声明等信息 -->
+		<div class="form-item">
+			<div class="fee">
+				<p>保险费:</p>
+				<span>{{fee}}</span>
+			</div>
+			<div>
+				<p class="date-claim-title">保险期限:</P>
+				<P class="date-claim">保险期间为第一个捐款人发生捐款行为起至最后一个受捐人得到善款保障止 ，
+					若投保时选择的公益项目期限在最后一个受捐人得到善款前停止，
+					则保险责任终止期以公益项目所投保期限为准。</P>
+			</div>
 
+			<div class="claim">
+				<div class="tabs">
+					<el-tabs tab-position="left" style="height: 330px;">
+    					<el-tab-pane label="保险条例" name="1">
+							<div class="tab-view">
+								<Clause></Clause>
+							</div>
+						</el-tab-pane>
+    					<el-tab-pane label="投保人须知" name="0">
+							<div class="tab-view">
+								<Statement></Statement>
+							</div>
+						</el-tab-pane>
+    				</el-tabs>
+				</div>
+			</div>
+		</div>
+
+		<el-button 
+			type="primary"
+			 class="send"
+			 @click="send">
+			 确认提交
+			 <i class="el-icon-upload el-icon--right"></i>
+		</el-button>
 		
   	</div>
 </template>
 
 <script>
+import Clause from './Clause';
+import Statement from './Statement';
+import func from '../../vue-temp/vue-editor-bridge';
+
 export default {
 	name: "InsuranceForm",
+	components: {
+		Clause,
+		Statement
+	},
 	data: function(){
 		return{
 			options: ['身份证'],
@@ -220,6 +264,25 @@ export default {
 					reason: ""
 				}
 			},
+			isOk: false
+		}
+	},
+	methods: {
+		send: function(){
+			this.$emit("lastStep");
+			this.axios({
+				method: "post",
+				url: "",
+				data: this.form
+				})
+				.then(function(response){
+					if(response.state == 200)
+					isOk = true;
+					
+				})
+				.catch(function(error){
+
+				})
 		}
 	},
 	props: ["calPriceInfo","fee","org_code"] ,
@@ -228,6 +291,34 @@ export default {
 </script>
 
 <style scoped>
+.send{
+	
+	width: 16%;
+	height: 45px;
+	min-width: 120px;
+	margin: 70px auto;
+	margin-left: 42%
+}
+.claim{
+	margin-top: 50px;
+	width:96%;
+	height: 400px;
+	border: 2px solid #92bbeb;
+	border-style: inset;
+}
+.tabs{
+	display: inline-block;
+	width: 100%;
+	margin-top: 40px;
+	
+}
+.tab-view{
+
+	overflow-y: scroll;
+	height: 330px;
+	width: 97%;
+}
+
 h2{
 	color: rgb(247, 107, 14);
 	
@@ -278,5 +369,19 @@ h5{
 }
 .el-textarea textarea{
 	height: 200px;
+}
+.fee p{
+	width: 10%;
+}
+.fee span{
+	font-size: 20px;
+	color: rgb(243, 161, 53);
+}
+.date-claim-title{
+	width: 10% !important;
+}
+.date-claim{
+	width: 80% !important;
+	color: rgb(207, 75, 52);
 }
 </style>
