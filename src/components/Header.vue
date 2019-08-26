@@ -1,19 +1,22 @@
 <template>
     <div id="header">
-    <div id="logo"><i class="el-icon-s-tools"></i><div>善行保</div></div>
-    <div id="menu">
-        <template v-for="(item, index) in items">
-        <a  href="/"
-            :key="index"
-            @mouseover="changeColor(item)"
-            @mouseout="changeColor(item)"
-            v-bind:class="{ 'active': item.active }">
-            <i :class="item.icon">
-                 {{item.title}}
-            </i>
-        </a>
-        </template>
-    </div>
+        <div id="logo">
+            <i class="el-icon-s-tools"></i>
+            <div>善行保</div>
+        </div>
+        <div id="menu">
+            <template v-for="(item, index) in items">
+                <a  :href="item.href" 
+                    :key="index" 
+                    @mouseover="changeColor(item)" 
+                    @mouseout="changeColor(item)"
+                    v-bind:class="{ 'active': item.active }">
+                        <i :class="item.icon">
+                            {{item.title}}
+                        </i>
+                </a>
+            </template>
+        </div>
     </div>
 </template>
 
@@ -25,16 +28,26 @@
                 items: [{
                         icon: "el-icon-tickets",
                         title: "投保 | ",
-                        active: false
+                        active: false,
+                        href: "insure.html"
                     },
                     {
                         icon: "el-icon-paperclip",
                         title: "申述 | ",
-                        active: false
-                    }, {
-                        icon: "el-icon-edit-outline",
-                        title: "投票",
-                        active: false
+                        active: false,
+                        href: "/"
+                    }, 
+                    {
+                        icon: "el-icon-s-check",
+                        title: "审核 |",
+                        active: false,
+                        href: "/"
+                    },
+                    {
+                        icon: "el-icon-view",
+                        title: "查询 |",
+                        active: false,
+                        href: "/"
                     }
                 ],
 
@@ -52,8 +65,24 @@
 
 <style scoped>
     #header{
-        height: 90px;
-        background-color: #eeeeee
+        
+        background-color: #eeeeee;
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+
+
+        /* 顶部header透明 */
+        filter: alpha(opacity=80);
+        /* IE */
+        -moz-opacity: 0.8;
+        /* Firefox */
+        opacity: 0.8;
+        /* others */
+
+
+
     }
     #logo{
         width: 275px;
@@ -74,22 +103,24 @@
         display: inline-block;
     }
     #menu{
+        
         display: inline-block;
+        /* float: right; */
         font-size: 22px;
-        width: 340px;
+        width: 500px;
         height: 90%;
-        margin-left: 40%;
         color: #333
     }
 
     a{
-        color: #333;
+        color: #111;
         display: inline-block;
         width: 105px;
     }
 
     .active{
-        color: steelblue;
+        color: rgb(37, 89, 168);
         font-size: 23px;
+        font-weight: 800;
     }
 </style>

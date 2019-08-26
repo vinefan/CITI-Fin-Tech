@@ -1,22 +1,26 @@
 <template>
   <div id="app">
-    <div class="headerWrapper">
-      <Header></Header>
-    </div>
+    <!-- 页头 -->
+    <Header></Header>
+    <!-- banner -->
     <Banner></Banner>
+    <!-- 导航栏 -->
     <div id="nav">
       <el-menu mode="horizontal"
                router="true"
                class="nav"
                active-text-color="#3a83cc"
-               default-active="/">
+               :default-active="active_route"
+              >
         <el-menu-item index="/" id="detail">产品介绍</el-menu-item>
         <el-menu-item index="/proposal">保险条例</el-menu-item>
         <el-menu-item index="/claim">理赔流程</el-menu-item>
         <el-menu-item index="/cases">被保案例</el-menu-item>
       </el-menu>
     </div>
+    <!-- 导航栏对应视图 -->
     <router-view></router-view>
+    <!-- 页脚 -->
     <Footer></Footer>
   </div>
 </template>
@@ -32,6 +36,14 @@
       Footer,
       Banner
     },
+    data: function(){
+      return{
+        active_route: ""
+      }
+    },
+    mounted(){
+      this.active_route = this.$route.path
+    }
       
   }
 </script>
@@ -43,6 +55,7 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #888888;
+    
   }
 
   /* 没有效果，Chrome显示还是20px*/
@@ -66,17 +79,6 @@
 
   }
 
-  /* header固定到顶部 */
-  .headerWrapper{
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    /* 顶部header透明 */
-    filter: alpha(opacity=80); /* IE */ 
-    -moz-opacity: 0.8; /* Firefox */
-    opacity: 0.8; /* others */
-  }
 
   #detail {
     margin-left: 20%;
