@@ -7,7 +7,7 @@
 				<div class="item">
 					<p>组织机构名称:</p>
 					<el-input   
-                    	:placeholder="calPriceInfo.organzination" 
+                    	:placeholder="calPriceInfo.organization" 
                     	:disabled="true">
                 	</el-input>
 				</div>
@@ -79,7 +79,7 @@
 			<div>
 				<p>目标筹款金额</p>
 				<el-input 
-					:placeholder="calPriceInfo.money" 
+					:placeholder="calPriceInfo.project_money" 
 					:disabled="true"></el-input> (￥)
 			</div>
 			
@@ -222,7 +222,6 @@
 <script>
 import Clause from './Clause';
 import Statement from './Statement';
-import func from '../../vue-temp/vue-editor-bridge';
 
 export default {
 	name: "InsuranceForm",
@@ -234,19 +233,19 @@ export default {
 		return{
 			options: ['身份证'],
 			form: {
-				insurance_date: this.calPriceInfo.time,
-				insurance_fee: this.fee,
+				insurance_date: 0,
+				insurance_fee: 0,
 				project:{
 					project_reason: "",
 					project_name: "",
-					project_money: this.calPriceInfo.money,
+					project_money: 0,
 					project_issue: "",
 					project_bank: "",
 					project_bank_account: ""
 				},
 				applicant:{
-					organzination: this.calPriceInfo.organzination,
-					org_id: this.org_code,
+					organization: "",
+					org_id: "",
 					address: "",
 					principal_name: "",
 					principal_ident_info: "",
@@ -269,18 +268,23 @@ export default {
 	},
 	methods: {
 		send: function(){
+			this.form.insurance_fee = this.fee;
+			this.form.insurance_date = this.calPriceInfo.insurance_date;
+			this.form.project.project_money = this.calPriceInfo.project_money;
+			this.form.applicant.organization = this.calPriceInfo.organization;
+			this.applicant.org_id = this.org_code;
 			this.$emit("lastStep");
 			this.axios({
 				method: "post",
-				url: "",
+				url: "http://192.168.1.105:9090/start/receiveForm",
 				data: this.form
 				})
-				.then(function(response){
+				.then((response)=> {
 					if(response.state == 200)
-					isOk = true;
+					this.isOk = true;
 					
 				})
-				.catch(function(error){
+				.catch((error)=>{
 
 				})
 		}

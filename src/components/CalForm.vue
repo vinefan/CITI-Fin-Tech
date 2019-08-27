@@ -9,7 +9,7 @@
                 <p>公益组织 (公益项目发起人) :</p>
                 <el-input   
                     placeholder="请输入内容" 
-                    v-model="calPriceInfo.organzination" 
+                    v-model="calPriceInfo.organization" 
                     clearable>
                 </el-input>
             </div>
@@ -18,7 +18,7 @@
                 <p>公益项目期限 :</p>
                 <el-select 
                     placeholder="请选择"
-                    v-model="calPriceInfo.time">
+                    v-model="calPriceInfo.insurance_date">
                     <el-option
                         v-for="(item, index) in list"
                         :key="index"
@@ -57,12 +57,16 @@ export default {
                     "公益项目期限 ≤12个月",
                     "公益项目期限 ≤24个月",
                     "24月≤公益项目期限"],
-            calPrice_url: "",
+            calPrice_url: "http://192.168.1.105:9090/start/calPremium",
             proj_money: "",
-            fee: 0,
             alert: false,
             msg: "",
-           
+            data: {
+                calPriceInfo: "",
+                org_code: "",
+                fee: ""
+            },
+            
         }
     },
     watch: {
@@ -92,15 +96,15 @@ export default {
     methods: {
         calPrice: function(){
             var calPriceInfo = this.calPriceInfo;
-            calPriceInfo.money = this.proj_money ;
+            calPriceInfo.project_money = this.proj_money ;
 
             // 检查表单是否填写完整
-            if(this.proj_money == "" || calPriceInfo.organzination == ""){
+            if(this.proj_money == "" || calPriceInfo.organization == ""){
                 this.msg = "请填写完整表单";
                 this.alert = true;
                 return;
             }
-            
+
             // 发送异步请求
             this.axios({
                 method: 'post',
@@ -108,18 +112,16 @@ export default {
                 data: calPriceInfo
                 })
                 // function(response)
-                .then(function(response){
+                .then((response)=> {
                     // 触发父组件监听事件 (showPrice)，
-                    // 将子组件的数据传向父组件, 数据应当包括 price list[calPriceInfo.time]    
-
-                    var data = {};
-                    data.calPriceInfo = calPriceInfo;
-                    data.fee = response.data.fee;
-                    data.org_code = response.data.code;
-
-                    this.$emit("showPrice",data)
+                    // 将子组件的数据传向父组件, 数据应当包括 price list[calPriceInfo.time]  
+                
+                    this.data.calPriceInfo = calPriceInfo;
+                    this.data.fee = response.data.fee;
+                    this.data.org_code = response.data.code; 
+                    this.$emit("showPrice",this.data)
                 })
-                .catch(function(error){
+                .catch((error)=> {
                     // 提示发送失败
                     this.msg = "发送失败" + error;
                     this.alert = true;

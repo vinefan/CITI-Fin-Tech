@@ -87,11 +87,11 @@ import InsuranceCase from "../components/InsuranceCase"
                     url: 'http://192.168.1.101:8080/search',
                     data: project
                     })
-                    .then(function (response){
+                    .then((response)=> {
                         this.items = response
                         // console.log("search successful !")
                     })
-                    .catch(function (error){
+                    .catch((error)=> {
                         this.error = false
                         this.msg = error
                     })

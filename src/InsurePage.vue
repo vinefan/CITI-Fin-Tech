@@ -47,26 +47,30 @@ export default {
     data: function(){
         return{
             calPriceInfo: {
-                organzination: "lala",
-                time: 0,
-                money: "100"
+                organization: "",
+                insurance_date: 0,
+                project_money: ""
             },
             isCalPrice: false,
             isInsuring: false,
             insurancePrice: 0,
             step: 0,
-            org_code: "cxy",
-
+            org_code: "",
         }
     },
     methods: {
         // function 缺参数
         showPrice: function(data){
+        
             // 处理data -》 calPriceInfo insurancePrice 
             this.calPriceInfo = data.calPriceInfo;
             this.org_code = data.org_code;
             this.insurancePrice = data.fee;
+            console.log(this.insurancePrice);
             // 显示showPrice组件
+
+            
+
             this.isCalPrice = true;
             // 步骤条改变
             this.step = 1;
