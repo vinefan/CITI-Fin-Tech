@@ -35,13 +35,13 @@
                         icon: "el-icon-paperclip",
                         title: "申述 | ",
                         active: false,
-                        href: "/"
+                        href: "/appeal"
                     }, 
                     {
                         icon: "el-icon-s-check",
                         title: "审核 |",
                         active: false,
-                        href: "/"
+                        href: "/check"
                     },
                     {
                         icon: "el-icon-view",

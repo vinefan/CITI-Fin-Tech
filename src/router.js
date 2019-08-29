@@ -3,7 +3,11 @@ import Router from 'vue-router'
 import Info from './views/Info'
 import Proposal from "./views/Proposal";
 import Claim from "./views/Claim";
-import Cases from "./views/Cases"
+import Cases from "./views/Cases";
+import CheckLogin from './views/CheckLogin';
+import Check from './views/Check'
+import AppealLogin from './views/AppealLogin';
+import Appeal from './views/Appeal'
 Vue.use(Router);
 
 export default new Router({
@@ -30,6 +34,22 @@ export default new Router({
       path: '/cases',
       name: 'cases',
       component: Cases
+    },
+    {
+      path: '/check',
+      component: CheckLogin
+    },
+    {
+      path: '/check/in',
+      component: Check,
+    },
+    {
+      path: '/appeal',
+      component: AppealLogin
+    },
+    {
+      path: '/appeal/in',
+      component: Appeal
     }
   ]
 })

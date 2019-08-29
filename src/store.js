@@ -4,14 +4,23 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
-    count: 0 ,
-    name: 'name'
+    supervisor_username: "",
+    supervisor_password: "",
+    donor_username: "",
+    donor_password: ""
   },
   mutations: {
-    // state参数是必须的
-    increase: function (state,name) {
-      state.count++;
-      state.name = name
+    setSuperUsername: function(state,username){
+      state.supervisor_username = username;
+    },
+    setSuperPassword: function(state,password){
+      state.supervisor_password = password;
+    },
+    setDonorUsername: function(state, username){
+      state.donor_username = username;
+    },
+    setDonorPassword: function(state,password){
+      state.donor_password = password;
     }
   },
   actions: {

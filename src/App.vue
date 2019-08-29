@@ -38,7 +38,7 @@
     },
     data: function(){
       return{
-        active_route: ""
+        active_route: "/"
       }
     },
     mounted(){
