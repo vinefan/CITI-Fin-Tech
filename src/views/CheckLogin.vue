@@ -12,12 +12,22 @@
             <div class="login">
                 <div class="username">
                     <p>Username</p>
-                    <el-input placeholder="" v-model="user.username" clearable>
+                    <el-input 
+                        placeholder="" 
+                        v-model="user.username" 
+                        :class="{ inputError: nameIsEmpty}"
+                        @focus="nameIsEmpty = false"
+                        clearable>
                     </el-input>
                 </div>
                 <div class="password">
                     <p>Password</p>
-                    <el-input placeholder="" v-model="user.password" clearable>
+                    <el-input 
+                        placeholder="" 
+                        v-model="user.password" 
+                        :class="{ inputError: pwdIsEmpty}"
+                        @focus="pwdIsEmpty = false"
+                        clearable>
                     </el-input> 
                 </div>
                 <div class="sign-up">
@@ -59,13 +69,16 @@ export default {
                 username: "",
                 password: "",
             },
-            isloading: false,
+            
             pubKey: "-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3 \
              DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb \
              9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeu \
             cF+S76xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7ei \
             bMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB-----END PUBLIC KEY-----"
-            
+            ,
+            isloading: false,
+            nameIsEmpty: false,
+            pwdIsEmpty: false
         }
     },
     methods: {
@@ -78,15 +91,28 @@ export default {
         sendLoginInfo: function(){
 
             var user = {
-                username: "vine",
-                password: "123456"
+                username: "",
+                password: ""
             };
+            user.username = this.user.username;
+            user.password = this.user.password;
+
+            // 判断用户名或密码是否为空
+            if(user.username=="" || user.password==""){
+                if(user.username==""){
+                    this.nameIsEmpty = true
+                }
+                if(user.password==""){
+                    this.pwdIsEmpty = true
+                }
+                return
+            }
 
             // 加密密码
             user.password = this.rsaEncrypt(user.password);
-            // 渲染页面为加载状态
+            // 加载提示
             this.isloading = true;
-
+            // 发送请求
             this.axios({
                 method: "post",
                 url:"",
@@ -108,14 +134,19 @@ export default {
                 })
         }
     },
-    created(){
-        this.sendLoginInfo()
-    }
+    
 
 }
 </script>
 
 <style scoped>
+
+.inputError {
+    padding: 0.5px;
+    border: 1px solid rgb(228, 35, 35) !important;
+    border-radius: 5px;
+}
+
 
 .load p{
     display: inline-block;

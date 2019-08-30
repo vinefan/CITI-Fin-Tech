@@ -12,12 +12,22 @@
             <div class="login">
                 <div class="username">
                     <p>Username</p>
-                    <el-input placeholder="" v-model="user.username" clearable>
+                    <el-input 
+                        placeholder="" 
+                        v-model="user.username" 
+                        :class="{ inputError: nameIsEmpty}"
+                        @focus="nameIsEmpty = false"
+                        clearable>
                     </el-input>
                 </div>
                 <div class="password">
                     <p>Password</p>
-                    <el-input placeholder="" v-model="user.password" clearable>
+                    <el-input 
+                        placeholder="" 
+                        v-model="user.password" 
+                        :class="{ inputError: pwdIsEmpty}"
+                        @focus="pwdIsEmpty = false"
+                        clearable>
                     </el-input> 
                 </div>
                 <div class="sign-up">
@@ -73,7 +83,9 @@ export default {
             bMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB-----END PUBLIC KEY-----"
             ,
             isloading: false,
-            iserror: false
+            iserror: false,
+            nameIsEmpty: false,
+            pwdIsEmpty: false
         }
     },
     methods: {
@@ -89,6 +101,19 @@ export default {
                 username: "vine",
                 password: "123456"
             };
+            user.username = this.user.username;
+            user.password = this.user.password;
+
+            // 判断用户名或密码是否为空
+            if(user.username=="" || user.password==""){
+                if(user.username==""){
+                    this.nameIsEmpty = true
+                }
+                if(user.password==""){
+                    this.pwdIsEmpty = true
+                }
+                return
+            }
 
             // 加密密码
             // user.password = this.rsaEncrypt(user.password);
@@ -123,6 +148,12 @@ export default {
 </script>
 
 <style scoped>
+
+.inputError {
+    padding: 0.5px;
+    border: 1px solid rgb(228, 35, 35) !important;
+    border-radius: 5px;
+}
 
 .load p{
     display: inline-block;
