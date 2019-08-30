@@ -1,13 +1,14 @@
 <template>
-  <div>this is check vue</div>
+	<div> this is check component . </div>
 </template>
 
 <script>
 export default {
-
+	name: "Check",
+	
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

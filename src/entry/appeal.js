@@ -8,7 +8,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import vueCookies from 'vue-cookies';
 
-
+axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
 Vue.use(element);
 Vue.use(VueAxios, axios);

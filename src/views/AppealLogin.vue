@@ -32,7 +32,7 @@
                 </div>
                 <div class="sign-up">
                     <el-button type="primary" @click="sendLoginInfo">
-                        Sign up
+                        Sign in
                         <i class="el-icon-upload el-icon--right"></i>
                     </el-button>
                 </div>

@@ -8,7 +8,7 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import vueCookies from 'vue-cookies';
 
-
+axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
 Vue.use(element);
 Vue.use(VueAxios, axios);
@@ -25,7 +25,7 @@ new Vue({
             if(!this.$cookies.get('session')){
                 this.$router.push('/check');
             }else{
-                this.$router.push('/check/in');
+                this.$router.push('/check');
             }
       }
   },

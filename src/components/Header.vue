@@ -10,6 +10,7 @@
                     :key="index" 
                     @mouseover="changeColor(item)" 
                     @mouseout="changeColor(item)"
+                    @click="search(index)"
                     v-bind:class="{ 'active': item.active }">
                         <i :class="item.icon">
                             {{item.title}}
@@ -47,7 +48,7 @@
                         icon: "el-icon-view",
                         title: "查询 |",
                         active: false,
-                        href: "/"
+                        href: ""
                     }
                 ],
 
@@ -57,7 +58,11 @@
             changeColor: function (item){
                 
                 item.active = !item.active 
-                // alert(item.active)
+            },
+            search: function(index){
+                if(index==3){                        
+                    this.$emit("changeRoute");
+                }
             }
         }
     }

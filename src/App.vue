@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- 页头 -->
-    <Header></Header>
+    <Header v-on:changeRoute="changeRoute"></Header>
     <!-- banner -->
     <Banner></Banner>
     <!-- 导航栏 -->
@@ -41,8 +41,17 @@
         active_route: "/"
       }
     },
+    methods:{
+      changeRoute: function(){
+        this.$router.push("/cases");
+        this.active_route = "/cases";
+      }
+    },
     mounted(){
-      this.active_route = this.$route.path
+      this.active_route = this.$route.path;
+      if(this.active_route =="/cases"){
+        window.scrollTo(0,1300);
+      }
     }
       
   }

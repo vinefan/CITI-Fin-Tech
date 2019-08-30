@@ -32,7 +32,7 @@
                 </div>
                 <div class="sign-up">
                     <el-button type="primary" @click="sendLoginInfo">
-                        Sign up
+                        Sign in
                         <i class="el-icon-upload el-icon--right"></i>
                     </el-button>
                 </div>
@@ -115,22 +115,24 @@ export default {
             // 发送请求
             this.axios({
                 method: "post",
-                url:"",
+                url:"http://192.168.1.104:8080/thirdLoginIn",
                 data: user
                 })
                 .then((response)=> {
 
+                    alert("sss");
                     // 设置session, 还有设置session_time
                     this.$cookies.set('session', response.data.session);
                     // 将账户密码缓存起来
                     this.$store.commit('setSuperPassword',user.password);
                     this.$store.commit('setSuperUsername',user.username);
                     // 进入审核页面
-                    this.$router.push('/check/in')
+                    // this.$router.push('/check/in')
 
                 })
                 .catch((error)=> {
-                    
+                    alert(error);
+                    this.isloading = false;
                 })
         }
     },

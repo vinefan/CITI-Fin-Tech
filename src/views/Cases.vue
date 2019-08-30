@@ -99,6 +99,7 @@ import InsuranceCase from "../components/InsuranceCase"
         },
         // 组件被挂载后执行
         mounted() {
+            
             this.axios
                 .get('http://192.168.1.106:8080/centor')
                 .then(response => {
@@ -111,7 +112,7 @@ import InsuranceCase from "../components/InsuranceCase"
                     
                     this.msg = error
                 })
-
+            
         }
     }
 </script>
