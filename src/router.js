@@ -50,6 +50,11 @@ export default new Router({
     {
       path: '/appeal/in',
       component: Appeal
-    }
+    },
+    {
+      path: '/check/in/cases',
+      name: 'cases',
+      component: Cases
+    },
   ]
 })

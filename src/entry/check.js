@@ -23,9 +23,9 @@ new Vue({
       checkLogin: function(){
           
             if(!this.$cookies.get('session')){
-                this.$router.push('/check');
+                this.$router.push('/check/in');
             }else{
-                this.$router.push('/check');
+                this.$router.push('/check/in');
             }
       }
   },

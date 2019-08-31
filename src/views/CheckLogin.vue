@@ -122,12 +122,12 @@ export default {
 
                     alert("sss");
                     // 设置session, 还有设置session_time
-                    this.$cookies.set('session', response.data.session);
+                    this.$cookies.set('superSession', response.data.session);
                     // 将账户密码缓存起来
                     this.$store.commit('setSuperPassword',user.password);
                     this.$store.commit('setSuperUsername',user.username);
-                    // 进入审核页面
-                    // this.$router.push('/check/in')
+                    进入审核页面
+                    this.$router.push('/check/in')
 
                 })
                 .catch((error)=> {
