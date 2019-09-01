@@ -1,13 +1,14 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import Info from './views/Info'
+import Router from 'vue-router';
+import Info from './views/Info';
 import Proposal from "./views/Proposal";
 import Claim from "./views/Claim";
 import Cases from "./views/Cases";
 import CheckLogin from './views/CheckLogin';
-import Check from './views/Check'
+import Check from './views/Check';
 import AppealLogin from './views/AppealLogin';
-import Appeal from './views/Appeal'
+import Appeal from './views/Appeal';
+import Test from './components/charity/test'
 Vue.use(Router);
 
 export default new Router({
@@ -56,5 +57,9 @@ export default new Router({
       name: 'cases',
       component: Cases
     },
+    {
+      path:'/charity',
+      component: Test
+    }
   ]
 })

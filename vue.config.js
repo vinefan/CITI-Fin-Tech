@@ -19,6 +19,11 @@ module.exports = {
             entry: 'src/entry/appeal.js',
             template: 'public/appeal.html',
             filename:'appeal.html'
+        },
+        charity: {
+            entry: 'src/entry/charity.js',
+            template: '/public/charity.html',
+            filename: 'charity.html'
         }
         
 

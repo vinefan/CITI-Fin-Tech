@@ -7,7 +7,9 @@ export default new Vuex.Store({
     supervisor_username: "",
     supervisor_password: "",
     donor_username: "",
-    donor_password: ""
+    donor_password: "",
+    proj_name: "",
+    proj_id: "",
   },
   mutations: {
     setSuperUsername: function(state,username){
@@ -21,6 +23,12 @@ export default new Vuex.Store({
     },
     setDonorPassword: function(state,password){
       state.donor_password = password;
+    },
+    setProjName: function(state,name){
+      state.proj_name = name;
+    },
+    setProjId: function(state,proj_id){
+      state.proj_id = proj_id;
     }
   },
   actions: {

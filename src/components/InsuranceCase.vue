@@ -25,6 +25,11 @@
           <li>
             <span>[保险状态]</span>
           </li>
+          <li>
+            <a href="/charity.html" @click="storeParams">
+              <i class="el-icon-mouse"/>查看详情 ...
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -36,11 +41,31 @@
 <script>
 export default {
     name: "InsurCase",
-    props: ['item']
+    props: ['item'],
+    methods: {
+      storeParams: function(){
+        this.$store.commit("setProjName",this.item.project_id);
+        this.$store.commit("setProjId",this.item.project.project_name);
+      }
+    }
 }
 </script>
 
 <style scoped>
+.content a{
+  display: inline-block;
+  padding: 20px 0;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 400;
+  color: #096fce;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.content i{
+  font-size: 25px;
+  font-weight: 800;
+}
+
 .case{
   width: 90%;
 
