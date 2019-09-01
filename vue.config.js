@@ -22,10 +22,9 @@ module.exports = {
         },
         charity: {
             entry: 'src/entry/charity.js',
-            template: '/public/charity.html',
+            template: 'public/charity.html',
             filename: 'charity.html'
         }
-        
 
     }
 }
