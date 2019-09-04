@@ -26,7 +26,7 @@
             <span>[保险状态]</span>
           </li>
           <li>
-            <a href="/charity" @click="storeParams">
+            <a href="/charity" @click="storeParams" target="_blank">
               <i class="el-icon-mouse"/>查看详情 ...
             </a>
           </li>

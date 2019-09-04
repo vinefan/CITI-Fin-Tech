@@ -8,6 +8,8 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 import vueCookies from 'vue-cookies';
 
+
+
 axios.defaults.withCredentials = true;
 Vue.config.productionTip = false;
 Vue.use(element);
@@ -22,7 +24,7 @@ new Vue({
     methods: {
         checkLogin: function(){
             
-              if(!this.$cookies.get('session')){
+              if(!this.$cookies.get('DonorSession')){
                   this.$router.push('/appeal');
               }else{
                   this.$router.push('/appeal/in');

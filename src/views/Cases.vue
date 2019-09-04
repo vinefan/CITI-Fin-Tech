@@ -58,7 +58,7 @@ import InsuranceCase from "../components/InsuranceCase"
                     "recipient": [{
                         "name": "小雪",
                         "sex": "女",
-                        "reason": "我没有一个朋友。\r\n这个看起来有点冷漠的姑娘叫小雪，今年10岁，是兄妹三人中的老大。妈妈患有狂躁性精神障碍，爸爸患有严重的胃病。全家挤在一个小房子里，受家庭环境影响，小雪性格内向，从不主动跟人说话。面对镜头，一直躲闪，采访她时，也只是勉强应付一下。本应该在最好的年纪享受快乐，却封闭了自我。没有朋友，没有笑容，有的，只是难过。"
+                        "reason": "我没有一个朋友。这个看起来有点冷漠的姑娘叫小雪，今年10岁，是兄妹三人中的老大。妈妈患有狂躁性精神障碍，爸爸患有严重的胃病。全家挤在一个小房子里，受家庭环境影响，小雪性格内向，从不主动跟人说话。面对镜头，一直躲闪，采访她时，也只是勉强应付一下。本应该在最好的年纪享受快乐，却封闭了自我。没有朋友，没有笑容，有的，只是难过。"
                     }],
                     "insurance_fee": 0.0,
                     "insurance_url": "https://oalipay-dl-django.alicdn.com/rest/1.0/image?fileIds=1-aCTcfgQNm599VOuTpl_AAAACMAAQED&zoom=original",

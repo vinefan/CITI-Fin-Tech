@@ -11,7 +11,8 @@
                     @mouseover="changeColor(item)" 
                     @mouseout="changeColor(item)"
                     @click="search(index)"
-                    v-bind:class="{ 'active': item.active }">
+                    v-bind:class="{ 'active': item.active }"
+                    target="_blank">
                         <i :class="item.icon">
                             {{item.title}}
                         </i>

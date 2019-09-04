@@ -11,7 +11,7 @@
         <div class="login-bg">
             <div class="login">
                 <div class="username">
-                    <p>Username</p>
+                    <p>Project ID</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.username" 
@@ -21,12 +21,13 @@
                     </el-input>
                 </div>
                 <div class="password">
-                    <p>Password</p>
+                    <p>Donor Password</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.password" 
                         :class="{ inputError: pwdIsEmpty}"
                         @focus="pwdIsEmpty = false"
+                        show-password
                         clearable>
                     </el-input> 
                 </div>
@@ -119,16 +120,17 @@ export default {
             // user.password = this.rsaEncrypt(user.password);
             // 渲染页面为加载状态
             this.isloading = true;
-
+            
+            var url = "";
             this.axios({
                 method: "post",
-                url:"http://192.168.1.115:9090/start/checkLog",
+                url: url,
                 data: user
                 })
                 .then((response)=> {
                     
                     // 设置session, 还有设置session_time
-                    this.$cookies.set('session', response.data.session);
+                    this.$cookies.set('DonorSession', response.data.session);
                     // 将账户密码缓存起来
                     this.$store.commit('setDonorPassword',user.password);
                     this.$store.commit('setDonorUsername',user.username);
@@ -136,9 +138,16 @@ export default {
                     this.$router.push('/appeal/in')
 
                 })
-                .catch((error)=> {
+                .catch((error) => {
                     this.isloading = false;
-                    this.iserror = true;
+                    this.$notify({
+                        title: '警告',
+                        message: '项目ID或登录密码错误 ！',
+                        type: 'warning',
+                        showClose: false,
+                        duration: '1400',
+                        offset: 100
+                    });
                 })
         }
     },

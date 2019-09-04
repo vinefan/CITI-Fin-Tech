@@ -8,7 +8,7 @@ import CheckLogin from './views/CheckLogin';
 import Check from './views/Check';
 import AppealLogin from './views/AppealLogin';
 import Appeal from './views/Appeal';
-import Test from './components/charity/test'
+import Charity from './components/charity/Charity'
 Vue.use(Router);
 
 export default new Router({
@@ -59,7 +59,7 @@ export default new Router({
     },
     {
       path:'/charity',
-      component: Test
+      component: Charity
     }
   ]
 })
