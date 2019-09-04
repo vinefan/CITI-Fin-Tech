@@ -1,0 +1,144 @@
+<template>
+	<div class="charity-wrapper">
+
+		<!-- 项目信息 -->
+		<Program v-bind:proj_info="proj_info">
+
+		</Program>
+		<!-- 资金树信息 -->
+		<MoneyTree v-bind:money_tree="money_tree">
+
+		</MoneyTree>
+		<!-- 申述树信息 -->
+		<AppealTree v-bind:appeal_tree="appeal_tree" >
+
+		</AppealTree>
+		<!-- footer -->
+		<div id="footer">
+            <div>
+                <p>版权所有©西南财经大学</p>
+                <p>CopyRight©Southwestern University Of Financial
+                     And Economics.All rights reserved.</p>
+                <p>联系 : 0000000</p>
+            </div>
+        </div>
+	</div>
+</template>
+
+<script>
+import Program from './Program';
+import AppealTree from './AppealTree';
+import MoneyTree from './MoneyTree';
+
+export default {
+	name: "Charity",
+	components:{
+		Program,
+		AppealTree,
+		MoneyTree
+	},
+	data: function(){
+		return{
+			proj_info: {
+                    "project_id": "53130000586921578D_53130000586921578DA19002",
+                    "project": {
+                        "project_name": "困境女童",
+                        "project_url": "https://oalipay-dl-django.alicdn.com/rest/1.0/image?fileIds=RDQVm6RQQVGlcG2hjC32WQAAACMAAQED&zoom=original",
+                        "project_money": 210000.0,
+                        "project_reason": "项目执行计划2019年此项目将继续执行，计划至少为5000名贫困女童送去温暖和保障，让孩子们可以快乐无忧的生活和学习，更加健康快乐地成长。(1)服务时间：2020年2月前；(2)帮扶地区：河北省石家庄市周边地区。(3)受助对象：需要心理支援的女童。"
+                    },
+                    "applicant": {
+                        "organization": "河北省新联合公益基金会",
+                        "org_id": "53130000586921578D",
+                        "address": "石家庄市中山西路356号中电信息大厦5楼"
+                    },
+                    "recipient": [{
+                        "name": "小雪",
+                        "sex": "女",
+                        "reason": "我没有一个朋友。这个看起来有点冷漠的姑娘叫小雪，今年10岁，是兄妹三人中的老大。妈妈患有狂躁性精神障碍，爸爸患有严重的胃病。全家挤在一个小房子里，受家庭环境影响，小雪性格内向，从不主动跟人说话。面对镜头，一直躲闪，采访她时，也只是勉强应付一下。本应该在最好的年纪享受快乐，却封闭了自我。没有朋友，没有笑容，有的，只是难过。"
+                    }],
+                    "insurance_fee": 0.0,
+                    "insurance_url": "https://oalipay-dl-django.alicdn.com/rest/1.0/image?fileIds=1-aCTcfgQNm599VOuTpl_AAAACMAAQED&zoom=original",
+                    "claim_state": false,
+                    "claim_context": [{
+                        "claim_reason": null,
+                        "claim_money": 0.0,
+                        "claim_times": 0,
+                        "claim_date": null
+                    }],
+                    "insurance_state": true
+                },
+			money_tree: '',
+			appeal_tree: '',
+			isAppealed: false,
+		}
+	},
+	methods:{
+		askForProjInfo: function() {
+			var project = { "proj_name": this.$store.proj_name };
+			var url = "";
+			this.axios({
+				method: "get",
+				url: url,
+				data: project
+				})
+				.then((response)=> {
+
+				})
+				.catch((error)=> {
+
+				})
+		},
+		askForMoneyMerkelTree: function() {
+			var project = { "project_id": this.$store.proj_id};
+			var url = "";
+			this.axios({
+				method: "post",
+				url: url,
+				data: project
+				})
+				.then((response)=> {
+
+				})
+				.catch((error)=>{
+
+				})
+		},
+		askForAppealMerkelTree: function() {
+			var appeal = { "project_id": this.$store.proj_id};
+			var url = "";
+			this.axios({
+				method: "post",
+				url: url,
+				data: appeal,
+				})
+				.then((response)=> {
+
+				})
+				.catch((error)=> {
+
+				})
+		}
+	},
+	mounted(){
+		// askForProjInfo();
+		// askForMoneyMerkelTree();
+		// askForAppealMerkelTree()
+	}
+}
+</script>
+
+<style>
+#footer{
+	padding-top: 40px;
+    background-color: #161718;
+    height: 110px;
+}
+
+#footer p{
+    margin-top: 0;
+    color: #fff;
+    text-align: center;
+    font-weight: 200;
+}
+</style>

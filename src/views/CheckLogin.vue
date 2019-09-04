@@ -246,8 +246,8 @@ export default {
 .login-header h3{
     display: inline-block;
     width: 20%;
-    color:  #bbbbbb;
-    font-size: 30px;
+    color:  #eeeeee;
+    font-size: 24px;
     font-weight: 300;
     margin: 0;
     padding-left: 20px;
