@@ -74,23 +74,44 @@ export default {
 		}
 	},
 	methods:{
+		backTocases: function(alert_msg){
+			this.$notify({
+                    title: '警告',
+                    message: alert_msg,
+                    type: 'warning',
+                    showClose: false,
+                    duration: '1800',
+                    });
+					this.$router.push('/cases');
+		},
 		askForProjInfo: function() {
-			var project = { "proj_name": this.$store.proj_name };
-			var url = "";
+			var project = { "proj_name": this.$store.state.proj_name };
+			if(project.proj_name == ''){
+				alert(project.proj_name);
+				// this.backTocases('请先查询');
+				return
+			} 
+			
+			var url = "http://192.168.1.105:8080/index";
 			this.axios({
 				method: "get",
 				url: url,
 				data: project
 				})
 				.then((response)=> {
-
+					this.proj_info = response.data;
 				})
 				.catch((error)=> {
-
+					this.backTocases('请重新输入项目名并点击搜索');
 				})
 		},
 		askForMoneyMerkelTree: function() {
-			var project = { "project_id": this.$store.proj_id};
+			var project = { "project_id": this.$store.state.proj_id};
+			if(project.project_id == ''){
+				this.backTocases('请先填入查询项目名');
+				return
+			} 
+			
 			var url = "";
 			this.axios({
 				method: "post",
@@ -98,10 +119,17 @@ export default {
 				data: project
 				})
 				.then((response)=> {
-
+					this.money_tree = response.data;
 				})
 				.catch((error)=>{
-
+					this.$notify({
+                    title: '警告',
+                    message: '网络错误',
+                    type: 'warning',
+                    showClose: false,
+                    duration: '1600',
+                    });
+					this.$router.push('/cases');
 				})
 		},
 		askForAppealMerkelTree: function() {
@@ -121,7 +149,7 @@ export default {
 		}
 	},
 	mounted(){
-		// askForProjInfo();
+		this.askForProjInfo();
 		// askForMoneyMerkelTree();
 		// askForAppealMerkelTree()
 	}

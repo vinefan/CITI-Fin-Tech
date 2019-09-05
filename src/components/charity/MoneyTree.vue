@@ -78,7 +78,7 @@ export default {
                     offset: 100
                 });
                 return;
-            };
+            }
             if(data.donor_id<this.money_tree.startNumber && data.donor_id>this.money_tree.endNumber){
                 this.$notify({
                     title: '警告',
@@ -178,13 +178,14 @@ export default {
 }
 .tree{
     float: left;
-    width: 50%;
+    width: 53%;
     min-width: 580px;
     margin: 20px 0px;
     height: 400px;
-    background: url('../../assets/moneyTree.png')  no-repeat;
-    background-position-y: -20px;
-    background-size: 580px 400px;
+    background: url('../../assets/money_tree.png')  no-repeat;
+    background-position-y: -40px;
+    background-position-x: -40px;
+    background-size: 720px 400px;
     border-right: 1px solid #dddddd;
 }
 .info{

@@ -186,13 +186,14 @@ export default {
 
 .tree{
     float: left;
-    width: 50%;
+    width: 53%;
     min-width: 580px;
     margin: 20px 0px;
     height: 400px;
-    background: url('../../assets/appealTree.png')  no-repeat;
-    background-position-y: -20px;
-    background-size: 580px 400px;
+    background: url('../../assets/appeal_tree.png')  no-repeat;
+    background-position-y: -50px;
+    background-position-x: -40px;
+    background-size: 720px 420px;
     border-right: 1px solid #dddddd;
 }
 .info{

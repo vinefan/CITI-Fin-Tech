@@ -10,6 +10,8 @@ export default new Vuex.Store({
     donor_password: "",
     proj_name: "",
     proj_id: "",
+    pubKey: "-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB-----END PUBLIC KEY-----"
+            ,
   },
   mutations: {
     setSuperUsername: function(state,username){
@@ -26,9 +28,11 @@ export default new Vuex.Store({
     },
     setProjName: function(state,name){
       state.proj_name = name;
+      
     },
     setProjId: function(state,proj_id){
       state.proj_id = proj_id;
+      alert(proj_id)
     }
   },
   actions: {

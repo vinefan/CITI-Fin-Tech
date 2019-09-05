@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import { JSEncrypt } from 'jsencrypt';
 export default {
 	name: "Appeal",
 	data: function(){
@@ -75,6 +76,11 @@ export default {
 		}
 	},
 	methods:{
+		rsaEncrypt: function(data){
+            let encrypor = new JSEncrypt();
+            encrypor.setPublicKey(this.$store.state.pubKey);            
+            return encrypor.encrypt(data);
+        },
 		logout: function(){
 			// 去掉session
 			this.$cookies.remove('DonorSession');
@@ -130,7 +136,10 @@ export default {
 				return
 			}
 
-			var url = "" ;
+			// jiami
+			appeal.donor_pwd = this.rsaEncrypt(appeal.donor_pwd);
+			
+			var url = "http://192.168.1.106:8080/start/receiveAppeal" ;
 			this.axios({
 				method: 'post',
 				data: appeal,
@@ -153,7 +162,8 @@ export default {
 				})
 
 		}
-	}
+	},
+	
 }
 </script>
 

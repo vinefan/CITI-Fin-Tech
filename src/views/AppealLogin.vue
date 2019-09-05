@@ -77,23 +77,18 @@ export default {
                 password: "",
             },
             
-            pubKey: "-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3 \
-             DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtNFOb \
-             9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeu \
-            cF+S76xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7ei \
-            bMxZtMlUDHjm4gwQco1KRMDSmXSMkDwIDAQAB-----END PUBLIC KEY-----"
-            ,
             isloading: false,
             iserror: false,
             nameIsEmpty: false,
-            pwdIsEmpty: false
+            pwdIsEmpty: false,
+            rep: ''
         }
     },
     methods: {
 
         rsaEncrypt: function(data){
             let encrypor = new JSEncrypt();
-            encrypor.setPublicKey(this.pubKey);            
+            encrypor.setPublicKey(this.$store.state.pubKey);            
             return encrypor.encrypt(data);
         },
         sendLoginInfo: function(){
@@ -117,11 +112,11 @@ export default {
             }
 
             // 加密密码
-            // user.password = this.rsaEncrypt(user.password);
+            user.password = this.rsaEncrypt(user.password);
             // 渲染页面为加载状态
             this.isloading = true;
 
-            var url = "";
+            var url = "http://192.168.1.106:8080/start/checkLog";
             this.axios({
                 method: "post",
                 url: url,
@@ -130,7 +125,9 @@ export default {
                 .then((response)=> {
                     
                     // 设置session, 还有设置session_time
+                    this.rep = response;
                     this.$cookies.set('DonorSession', response.data.session);
+
                     // 将账户密码缓存起来
                     this.$store.commit('setDonorPassword',user.password);
                     this.$store.commit('setDonorUsername',user.username);

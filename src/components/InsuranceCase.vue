@@ -44,8 +44,8 @@ export default {
     props: ['item'],
     methods: {
       storeParams: function(){
-        this.$store.commit("setProjName",this.item.project_id);
-        this.$store.commit("setProjId",this.item.project.project_name);
+        this.$store.commit("setProjName",this.item.project.project_name);
+        this.$store.commit("setProjId",this.item.project_id);
       }
     }
 }
