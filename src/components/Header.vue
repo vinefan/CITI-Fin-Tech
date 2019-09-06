@@ -31,7 +31,7 @@
                         icon: "el-icon-tickets",
                         title: "投保 | ",
                         active: false,
-                        href: "insure.html"
+                        href: "/insure"
                     },
                     {
                         icon: "el-icon-paperclip",

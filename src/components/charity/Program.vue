@@ -43,7 +43,7 @@ export default {
 <style scoped>
 .program-wrapper{
     width: 88%;
-    margin: 50px auto;
+    margin: 80px auto;
     height: 340px;
     border: 1px solid #dddddd;
     border-radius: 6px;

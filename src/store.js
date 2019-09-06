@@ -28,11 +28,11 @@ export default new Vuex.Store({
     },
     setProjName: function(state,name){
       state.proj_name = name;
-      
+      alert(state.proj_name)
     },
     setProjId: function(state,proj_id){
       state.proj_id = proj_id;
-      alert(proj_id)
+      alert(state.proj_id)
     }
   },
   actions: {

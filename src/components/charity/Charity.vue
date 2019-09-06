@@ -6,22 +6,25 @@
 
 		</Program>
 		<!-- 资金树信息 -->
-		<MoneyTree v-bind:money_tree="money_tree">
+		<MoneyTree v-bind:money_tree="money_tree" 
+				   v-bind:proj_id="proj_info.project_id">
 
 		</MoneyTree>
 		<!-- 申述树信息 -->
-		<AppealTree v-bind:appeal_tree="appeal_tree" >
+		<AppealTree v-bind:appeal_tree="appeal_tree" 
+					v-bind:proj_id="proj_info.project_id" 
+					v-if="isAppealed">
 
 		</AppealTree>
 		<!-- footer -->
-		<div id="footer">
+		<!-- <div id="footer">
             <div>
                 <p>版权所有©西南财经大学</p>
                 <p>CopyRight©Southwestern University Of Financial
                      And Economics.All rights reserved.</p>
                 <p>联系 : 0000000</p>
             </div>
-        </div>
+        </div> -->
 	</div>
 </template>
 
@@ -29,6 +32,7 @@
 import Program from './Program';
 import AppealTree from './AppealTree';
 import MoneyTree from './MoneyTree';
+import { all } from 'q';
 
 export default {
 	name: "Charity",
@@ -40,7 +44,7 @@ export default {
 	data: function(){
 		return{
 			proj_info: {
-                    "project_id": "53130000586921578D_53130000586921578DA19002",
+                    "project_id": "13100000500004729P关爱留守儿童",
                     "project": {
                         "project_name": "困境女童",
                         "project_url": "https://oalipay-dl-django.alicdn.com/rest/1.0/image?fileIds=RDQVm6RQQVGlcG2hjC32WQAAACMAAQED&zoom=original",
@@ -73,6 +77,8 @@ export default {
 			isAppealed: false,
 		}
 	},
+	props: ['proj_name'],
+	
 	methods:{
 		backTocases: function(alert_msg){
 			this.$notify({
@@ -85,14 +91,15 @@ export default {
 					this.$router.push('/cases');
 		},
 		askForProjInfo: function() {
-			var project = { "proj_name": this.$store.state.proj_name };
+			
+			var project = { "proj_name": this.proj_name };
 			if(project.proj_name == ''){
-				alert(project.proj_name);
-				// this.backTocases('请先查询');
+				this.backTocases('请先查询');
 				return
 			} 
-			
-			var url = "http://192.168.1.105:8080/index";
+
+			// 发送请求
+			var url = "http://192.168.1.103:8080/index";
 			this.axios({
 				method: "get",
 				url: url,
@@ -106,13 +113,14 @@ export default {
 				})
 		},
 		askForMoneyMerkelTree: function() {
-			var project = { "project_id": this.$store.state.proj_id};
+		
+			var project = { "project_id": this.proj_info.project_id};
 			if(project.project_id == ''){
 				this.backTocases('请先填入查询项目名');
 				return
 			} 
 			
-			var url = "";
+			var url = "http://192.168.1.103:8080/start/tree/moneyroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -133,25 +141,30 @@ export default {
 				})
 		},
 		askForAppealMerkelTree: function() {
-			var appeal = { "project_id": this.$store.proj_id};
-			var url = "";
+			var appeal = { "project_id": this.proj_info.project_id};
+			var url = "http://192.168.1.103:8080/start/tree/appealroot";
 			this.axios({
 				method: "post",
 				url: url,
 				data: appeal,
 				})
 				.then((response)=> {
+					this.appeal_tree = response.data;
+					if(this.appeal_tree.is_appealed == true){
+						this.isAppealed = true;
 
+					}
 				})
 				.catch((error)=> {
 
 				})
-		}
+		},
+		
 	},
 	mounted(){
-		this.askForProjInfo();
-		// askForMoneyMerkelTree();
-		// askForAppealMerkelTree()
+		// this.askForProjInfo();
+		this.askForMoneyMerkelTree();
+		this.askForAppealMerkelTree()
 	}
 }
 </script>

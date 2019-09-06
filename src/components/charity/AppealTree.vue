@@ -5,19 +5,21 @@
             <div class="info">
                 <div class="info-item">
                     <h4>默克尔树根</h4>
-                    <p>{{appeal_tree.merkleRootHash}}</p>
+                    <p>{{appeal_tree.merkle_tree.merkleRootHash}}</p>
                 </div>
                 <div class="info-item">
                     <h4>申述人资金总占比</h4>
-                    <el-progress :percentage="20" :color="progress.color"></el-progress>
+                    <el-progress :percentage="progress.percentage" 
+                                 :color="progress.color">
+                    </el-progress>
                 </div>
                 <div class="info-item">
                     <h4>申述总人数</h4>
-                    <p>{{appeal_tree.appeal_amount}}</p>
+                    <p>{{appeal_tree.merkle_tree.appeal_amount}}</p>
                 </div>
                 <div class="info-item" id="last-item">
                     <h4>申述序列号可查询范围</h4>
-                    <p>{{appeal_tree.startNumber}} - {{appeal_tree.endNumber}}</p>
+                    <p>{{appeal_tree.merkle_tree.startNumber}} - {{appeal_tree.merkle_tree.endNumber}}</p>
                 </div>
             </div>
         </div>
@@ -26,6 +28,10 @@
             <h4>填入申述序列号进行查询</h4>
             <div class="box">
             <el-input placeholder="请输入内容" v-model="appeal_id" clearable>
+                <el-select v-model="prefix" slot="prepend" placeholder="序列前缀">
+                    <el-option label=" 1 -" value=" 1-"></el-option>
+                    
+                </el-select>
             </el-input>
             <el-button type="primary" icon="el-icon-search" @click="search">搜索</el-button>
             </div>
@@ -51,7 +57,7 @@
 
 export default {
     name: "AppealTree",
-    props: ['appeal_tree'],
+    props: ['appeal_tree','proj_id'],
     data: function(){
         return{
             isError: false,
@@ -60,16 +66,18 @@ export default {
             appeal_id: '',
             progress: {
                 color: '#f56c6c', percentage: 0
-            }
+            },
+            prefix: '',
         }
     },
     methods:{
         search: function(){
+            
             var data = {
-                "project_id": this.$store.proj_id,
+                "project_id": this.proj_id,
                 "appeal_id": this.appeal_id
             };
-            var url = "";
+            var url = "http://192.168.1.103:8080/start/tree/appealpath";
 
             if(data.appeal_id == ""){
                 this.$notify({
@@ -93,13 +101,16 @@ export default {
                 });
                 return;
             }
+            data.appeal_id = this.prefix + data.appeal_id;
+            alert(data.appeal_id);
+            alert(data.project_id)
             this.axios({
                 method: "post",
                 data: data,
                 url: url
                 })
                 .then((response)=> {
-                    this.node_list = response.data;
+                    this.node_list = response.data.appeal_path;
                     this.have_node_list = true;
                 })
                 .catch((error)=> {
@@ -113,18 +124,21 @@ export default {
         }
     },
     mounted(){
-        this.progress.percentage = this.appeal_tree.appeal_result*100;
+        this.progress.percentage = this.appeal_tree.merkle_tree.appeal_result*100;
     }
 }
 </script>
 
 <style scoped>
+ .el-select{
+     width: 120px;;
+ }
 .el-progress{
     width: 90%;
 }
 .appeal-tree-wrapper{
     width: 88%;
-    margin: 50px auto;
+    margin: 120px auto;
     /* height: 400px; */
     border: 1px solid #dddddd;
     border-radius: 6px;
@@ -141,7 +155,6 @@ export default {
 }
 .tree-node{
     width: 90%;
-    height: 300px;
     border: 1px #dddddd solid; 
     margin: 50px auto;
     border-radius: 3px;
@@ -159,8 +172,7 @@ export default {
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #888;
-    font-size: 
+    color: #888; 
 }
 .search-box .el-input{
     width: 70%;
@@ -171,17 +183,17 @@ export default {
 }
 .box{
     margin-left: 26%;
-    width: 60%;
-    
+    width: 60%;   
 }
 
 .info-item{
     height: 80px;
-    padding-left: 40px;
+    padding-left: 0px;
 }
 
 .info-item h4{
     color: #1574e0;
+    
 }
 
 .tree{

@@ -5,19 +5,19 @@
             <div class="info">
                 <div class="info-item">
                     <h4>默克尔树根</h4>
-                    <p>{{money_tree.merkleRootHash}}</p>
+                    <p>{{money_tree.merkle_tree.merkleRootHash}}</p>
                 </div>
                 <div class="info-item">
                     <h4>捐款总额</h4>
-                    <p>{{money_tree.raised_money}}</p>
+                    <p>{{money_tree.merkle_tree.raised_money}}</p>
                 </div>
                 <div class="info-item">
                     <h4>捐款总人数</h4>
-                    <p>{{donate_amount}}</p>
+                    <p>{{money_tree.merkle_tree.donate_amount}}</p>
                 </div>
                 <div class="info-item" id="last-item">
                     <h4>捐款序列号可查询范围</h4>
-                    <p>{{money_tree.startNumber}} - {{money_tree.endNumber}}</p>
+                    <p>{{money_tree.merkle_tree.startNumber}} - {{money_tree.merkle_tree.endNumber}}</p>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
 <script>
 export default {
     name: "MoneyTree",
-    props: ['money_tree'],
+    props: ['money_tree','proj_id'],
     data: function(){
         return{
             msg: "提示信息",
@@ -62,12 +62,13 @@ export default {
     },
     methods:{
         search: function(){
+            
             var data = {
-                "project_id": this.$store.proj_id,
+                "project_id": this.proj_id,
                 "donor_id": this.donor_id
             };
-            var url = "";
-
+            
+            // 判断数据是否正确
             if(data.donor_id == ""){
                 this.$notify({
                     title: '警告',
@@ -90,13 +91,15 @@ export default {
                 });
                 return;
             }
+            // 发送请求
+            var url = "http://192.168.1.103:8080/start/tree/moneypath";
             this.axios({
                 method: "post",
                 data: data,
                 url: url
                 })
                 .then((response)=> {
-                    this.node_list = response.data;
+                    this.node_list = response.data.money_path;
                     this.have_node_list = true;
                 })
                 .catch((error)=> {
@@ -123,7 +126,6 @@ export default {
 }
 .tree-node{
     width: 90%;
-    height: 300px;
     border: 1px #dddddd solid; 
     margin: 50px auto;
     border-radius: 3px;
@@ -142,7 +144,6 @@ export default {
     padding: 0;
     text-align: center;
     color: #888;
-    font-size: 
 }
 .search-box .el-input{
     width: 70%;
@@ -158,7 +159,6 @@ export default {
 }
 
 .info-item{
-    padding-left: 40px;
     border-radius: 5px;
     height: 80px;
 }

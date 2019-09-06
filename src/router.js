@@ -58,8 +58,10 @@ export default new Router({
       component: Cases
     },
     {
-      path:'/charity',
-      component: Charity
+      name: 'linktocharity',
+      path: '/charity/:proj_name',
+      component: Charity,
+      props: true,
     }
   ]
 })

@@ -26,9 +26,9 @@
             <span>[保险状态]</span>
           </li>
           <li>
-            <a href="/charity" @click="storeParams" target="_blank">
-              <i class="el-icon-mouse"/>查看详情 ...
-            </a>
+              <router-link :to="{ name: 'linktocharity', params: { proj_name: item.project.project_name }}">
+                lalala
+              </router-link>
           </li>
         </ul>
       </div>
@@ -39,15 +39,12 @@
 </template>
 
 <script>
+import Charity from './charity/Charity.vue';
+
 export default {
     name: "InsurCase",
     props: ['item'],
-    methods: {
-      storeParams: function(){
-        this.$store.commit("setProjName",this.item.project.project_name);
-        this.$store.commit("setProjId",this.item.project_id);
-      }
-    }
+   
 }
 </script>
 
