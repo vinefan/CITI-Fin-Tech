@@ -27,7 +27,7 @@
           </li>
           <li>
               <router-link :to="{ name: 'linktocharity', params: { proj_name: item.project.project_name }}">
-                lalala
+                查看详情
               </router-link>
           </li>
         </ul>
