@@ -22,8 +22,8 @@ new Vue({
   methods: {
       checkLogin: function(){
           
-            if(!this.$cookies.get('session')){
-                this.$router.push('/check/in');
+            if(!this.$cookies.get('superSession')){
+                this.$router.push('/check');
             }else{
                 this.$router.push('/check/in');
             }

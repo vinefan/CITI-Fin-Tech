@@ -1,6 +1,6 @@
 <template>
 	<div class="insurance-form">
-		<h2><i class="el-icon-paperclip"></i>请完整且正确填写信息，以确保投保申请通过！</h2>
+		<!-- <h2><i class="el-icon-paperclip"></i>请完整且正确填写信息，以确保投保申请通过！</h2> -->
 		<!-- 投保人信息 （公益组织）-->
 		<div id="applicant-info" class="form-item">
 				<h3>投保人</h3>
@@ -149,6 +149,12 @@
 					v-model="form.recipient.ident_info"></el-input>
 			</div>
 			<div>
+				<p>联系住址</p>
+				<el-input 
+					placeholder="——  (省/自治区/直辖市) —— (市)  ——(区/县)"
+					v-model="form.recipient.address"></el-input>
+			</div>
+			<div>
 				<p>手机号码</p>
 				<el-input 
 					placeholder=""
@@ -185,9 +191,12 @@
 			</div>
 			<div>
 				<p class="date-claim-title">保险期限:</P>
-				<P class="date-claim">保险期间为第一个捐款人发生捐款行为起至最后一个受捐人得到善款保障止 ，
-					若投保时选择的公益项目期限在最后一个受捐人得到善款前停止，
-					则保险责任终止期以公益项目所投保期限为准。</P>
+				<el-input   
+					:placeholder="charity_time" 
+					:disabled="true">
+                </el-input>
+				<P class="date-claim">(保险期间为第一个捐款人发生捐款行为起至最后一个受捐人得到善款保障止 ，
+					即公益项目期限。)</P>
 			</div>
 
 			<div class="claim">
@@ -231,17 +240,20 @@ export default {
 	},
 	data: function(){
 		return{
+			email_suffixs: ['@qq.com','@163.com','@126.com'],
 			options: ['身份证'],
 			form: {
 				insurance_date: 0,
 				insurance_fee: 0,
+				insurance_valid_time: 0,
 				project:{
 					project_reason: "",
 					project_name: "",
 					project_money: 0,
 					project_issue: "",
 					project_bank: "",
-					project_bank_account: ""
+					project_bank_account: "",
+					project_raise_money_time: 0
 				},
 				applicant:{
 					organization: "",
@@ -260,7 +272,8 @@ export default {
 					phone: "",
 					bank: "",
 					bank_account: "",
-					reason: ""
+					reason: "",
+					address: ''
 				}
 			},
 			isOk: false
@@ -268,10 +281,19 @@ export default {
 	},
 	methods: {
 		send: function(){
+			// 保费  
 			this.form.insurance_fee = this.fee;
+			// 保险时间 
+			this.form.insurance_valid_time = this.charity_time;
+			// 保险因子
 			this.form.insurance_date = this.calPriceInfo.insurance_date;
+			// 筹款金额
 			this.form.project.project_money = this.calPriceInfo.project_money;
+			// 筹款时间
+			this.form.project.project_raise_money_time = this.raise_time;
+			// 组织名
 			this.form.applicant.organization = this.calPriceInfo.organization;
+			// 组织代号
 			this.applicant.org_id = this.org_code;
 			this.$emit("lastStep");
 			this.axios({
@@ -285,11 +307,26 @@ export default {
 					
 				})
 				.catch((error)=>{
-
+					this.$notify({
+                    title: '警告',
+                    message: '上传失败',
+                    type: 'warning',
+                    showClose: false,
+                    duration: '2200',
+                    });
 				})
+		},
+		emailComplete(queryString, cb){
+
+			var completedEmails = [];
+			for(i = 0; i<this.email_suffixs.length; i++){
+				var email = queryString + this.email_suffixs[i];
+				completedEmails.push(email);
+			}
+			cb(completedEmails)
 		}
 	},
-	props: ["calPriceInfo","fee","org_code"] ,
+	props: ["calPriceInfo","fee","org_code","charity_time","raise_time"] ,
 
 }
 </script>

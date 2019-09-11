@@ -27,12 +27,31 @@
 
 		<div class="view">
 			<div class="insur-module" v-if="atInsur">
-				<transition-group tag="div">
-					<Insurance v-for="i in items" v-bind:key="i"></Insurance>
+
+				<!-- 动画效果 -->
+				<transition-group tag="div" name="list-complete">
+					<Insurance  v-for="(insur,index) in insur_list" 
+								:key="index" 
+								:insur="insur" 
+								:index="index"
+								v-on:removeInsur="removeInsur" 
+								class="list-complete-item">
+					</Insurance>
 				</transition-group>
 			</div>
+
 			<div class="appeal-module" v-if="atAppeal">
-				miao
+
+				<transition-group tag="div" name="list-complete">
+					<AppealInsur 
+						v-for="(appeal, index) in appeal_list" 
+						:key="index" 
+						:appeal="appeal" 
+						:index="index"
+						v-on:removeAppeal="removeAppeal" 
+						class="list-complete-item">
+					</AppealInsur>
+				</transition-group>
 			</div>
 		</div>
 		
@@ -41,10 +60,13 @@
 
 <script>
 import Insurance from "../components/check/Insurance"
+import AppealInsur from '../components/check/AppealInsur'
+
 export default {
 	name: "Check",
 	components:{
 		Insurance,
+		AppealInsur
 	},
 	methods:{
 		logout: function(){
@@ -61,7 +83,6 @@ export default {
 			this.screenHeight = this.screenHeight+"px";
 		},
 		skipToAppeal: function(){
-			
 			this.atInsur = false;
 			this.atAppeal = true;
 		},
@@ -70,20 +91,52 @@ export default {
 			this.atInsur = true;
 		},
 		askForInsur: function(){
+			var data = {
+				"third_org_name": this.$store.state.supervisor_username
+			}
+			var url = "http://192.168.1.105:8080/thirdOrgIndex"
 			// 请求待审保单
+			this.axios({
+				method: "post",
+				data: data,
+				url: url
+				})
+				.then((response)=> {
+
+					
+					this.insur_list = response.data.insurances;
+					this.appeal_list = response.data.appeals;
+				})
+				.catch((error)=> {
+					this.$notify({
+						title: '警告',
+						message: '网络异常',
+						type: 'warning',
+						showClose: false,
+						duration: '2200',
+                    });
+				})
 			// 保存给 this.insur_list
 		},
 		askForAppeal: function(){
 			// 请求待理赔项目
 			// 保存给 this.appeal_list
+			this.askForInsur();
+		},
+		removeInsur: function(index){
+			this.insur_list.splice(index,1);
+			
+		},
+		removeAppeal: function(index){
+			this.appeal_list.splice(index,1);
 		}
 	},
+	
 	data: function(){
 		return{
 			
 			insur_module: "true",
 			appeal_module: "false",
-			items: [1,2,3,4,5],
 			atInsur: true,
 			atAppeal: false,
 			insur_list: [],
@@ -91,17 +144,35 @@ export default {
 		}
 	},
 	mounted(){
+		
 		// 请求待审保单
-		askForInsur();
+		this.askForInsur();
 	}
 
 }
 </script>
 
 <style scoped>
+/* 动画效果 */
+.list-complete-item {
+  transition: all 2s;
+  display: inline-block;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+  /* transform: translateX(130px); */
+  transform: translateY(130px);
+}
+
+
 .insur-module{
 	padding-top: 100px; 
 	padding-bottom: 100px;
+	min-height: 640px;
+}
+.appeal-module{
+	min-height: 800px;
 }
 
 #menu{

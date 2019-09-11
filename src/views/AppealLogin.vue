@@ -53,10 +53,9 @@
         </div>
         <div id="footer">
             <div>
-                <p>版权所有©西南财经大学</p>
-                <p>CopyRight©Southwestern University Of Financial
-                     And Economics.All rights reserved.</p>
-                <p>联系 : 0000000</p>
+               <p>版权所有© 快乐星球团队</p>
+                <p>CopyRight© Will Block Team. All rights reserved.</p>
+                <p>蜀ICPxxxxxxxx号</p>
             </div>
         </div>
     </div>

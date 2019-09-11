@@ -27,6 +27,7 @@
                         v-model="user.password" 
                         :class="{ inputError: pwdIsEmpty}"
                         @focus="pwdIsEmpty = false"
+                        show-password
                         clearable>
                     </el-input> 
                 </div>
@@ -47,9 +48,9 @@
         </div>
         <div id="footer">
             <div>
-                <p>版权所有©西南财经大学</p>
-                <p>CopyRight©Southwestern University Of Financial And Economics.All rights reserved.</p>
-                <p>联系 : 0000000</p>
+                <p>版权所有© 快乐星球团队</p>
+                <p>CopyRight© Will Block Team. All rights reserved.</p>
+                <p>蜀ICPxxxxxxxx号</p>
             </div>
         </div>
     </div>
@@ -78,7 +79,7 @@ export default {
             ,
             isloading: false,
             nameIsEmpty: false,
-            pwdIsEmpty: false
+            pwdIsEmpty: false,
         }
     },
     methods: {
@@ -115,24 +116,29 @@ export default {
             // 发送请求
             this.axios({
                 method: "post",
-                url:"http://192.168.1.104:8080/thirdLoginIn",
+                url:"http://192.168.1.105:8080/thirdLoginIn ",
                 data: user
                 })
                 .then((response)=> {
 
-                    alert("sss");
                     // 设置session, 还有设置session_time
                     this.$cookies.set('superSession', response.data.session);
                     // 将账户密码缓存起来
                     this.$store.commit('setSuperPassword',user.password);
                     this.$store.commit('setSuperUsername',user.username);
-                    进入审核页面
+                    // 进入审核页面
                     this.$router.push('/check/in')
 
                 })
                 .catch((error)=> {
-                    alert(error);
                     this.isloading = false;
+                    this.$notify({
+                        title: '警告',
+                        message: '网络异常',
+                        type: 'warning',
+                        showClose: false,
+                        duration: '2200',
+                    });
                 })
         }
     },

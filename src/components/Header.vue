@@ -1,9 +1,8 @@
 <template>
     <div id="header">
-        <div id="logo">
-            <i class="el-icon-s-tools"></i>
-            <div>善行保</div>
-        </div>
+        <!-- logo -->
+        <div id="logo"></div>
+        <!-- menu -->
         <div id="menu">
             <template v-for="(item, index) in items">
                 <a  :href="item.href" 
@@ -72,15 +71,15 @@
 <style scoped>
     #header{
         
-        background-color: #eeeeee;
+        background-color: #ebecec;
         position: fixed;
         width: 100%;
         left: 0;
         top: 0;
-
+        min-width: 1200px;
 
         /* 顶部header透明 */
-        filter: alpha(opacity=80);
+        filter: alpha(opacity=90);
         /* IE */
         -moz-opacity: 0.8;
         /* Firefox */
@@ -91,31 +90,25 @@
 
     }
     #logo{
-        width: 275px;
-        height: 90px;
-        display: inline-block;
-        color:steelblue;
-    }
-    #logo i {
-        margin-top: 25px;
-        font-size: 40px;
+        width: 320px;
         height: 100px;
-        display: inline-block;
+        float: left;
+        color:steelblue;
+        margin-left: 50px;
+        background: url('../assets/header_logo.png') center center no-repeat;
+        background-size: 100%;
+        background-position-y: -50px;
+    }
 
-    }
-    #logo div{
-        margin-left: 20px;
-        font-size: 40px;
-        display: inline-block;
-    }
     #menu{
         
-        display: inline-block;
-        /* float: right; */
-        font-size: 22px;
+        float: right;
+        font-size: 24px;
         width: 500px;
         height: 90%;
-        color: #333
+        color: #333;
+        margin-top: 40px;
+        margin-right: 35px;
     }
 
     a{
@@ -126,7 +119,7 @@
 
     .active{
         color: rgb(37, 89, 168);
-        font-size: 23px;
-        font-weight: 800;
+        font-size: 24px;
+        
     }
 </style>

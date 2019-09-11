@@ -17,15 +17,18 @@
 
         <!-- 估价信息展示 -->
         <ShowPrice 
-            v-if="true"
-            v-on:showInsurance="showInsurance"></ShowPrice>
+            v-if="isCalPrice"
+            v-on:showInsurance="showInsurance"
+            :fee="insurancePrice"></ShowPrice>
 
         <!-- 保单 v-if="isInsuring" -->
         <Insurance
-            v-if="true"
+            v-if="isInsuring"
             :calPriceInfo="calPriceInfo"
             :fee="insurancePrice"
-            :org_code="org_code"></Insurance>
+            :org_code="org_code"
+            :raise_time="raise_time"
+            :charity_time="charity_time"></Insurance>
    </div>
 </template>
 
@@ -56,21 +59,22 @@ export default {
             insurancePrice: 0,
             step: 0,
             org_code: "",
-        }
+            raise_time: 0,
+            charity_time: 0
+}
     },
     methods: {
         // function 缺参数
         showPrice: function(data){
         
-            // 处理data -》 calPriceInfo insurancePrice 
+            // 处理子组件传来的data 
             this.calPriceInfo = data.calPriceInfo;
             this.org_code = data.org_code;
             this.insurancePrice = data.fee;
-            console.log(this.insurancePrice);
-            // 显示showPrice组件
+            this.raise_time = data.raise_time;
+            this.charity_time = data.charity_time;
 
-            
-
+            // 显示showPrice组件          
             this.isCalPrice = true;
             // 步骤条改变
             this.step = 1;

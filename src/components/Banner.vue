@@ -4,19 +4,20 @@
     <img src="../assets/logo.png"  />
 
         <div class="container">
+        	<div class="bg-img">
+        		<div class="product-title">
+        			<p class="title">
+        				<i class="el-icon-s-order">&nbsp;善行保</i>
+        			</p>
+        			<div class="cut-off-line" />
+        		</div>
 
-          <div class="product-title">
-            <p class="title">
-              <i class="el-icon-s-order">&nbsp;善行保</i>
-            </p>
-            <div class="cut-off-line" />
-          </div>
-
-          <div class="product-description">
-            <p class="description-1">公益项目履约保证保险(共保体)</p>
-            <p class="description-2">一款基于区块链技术的慈善保险</p>
-          </div>
-      </div>
+        		<div class="product-description">
+        			<p class="description-1">公益项目履约保证保险（共保体）</p>
+        			<p class="description-2">基于区块链技术的慈善保险</p>
+        		</div>
+        	</div>
+        </div>
         
       <div class="feature">
         <div class="charity">
@@ -34,8 +35,9 @@
       </div>
 
       <div class="prose">
-        <p> 每一份爱得到保障 </p>
-        <p>每一份善款都得以最可靠的方式抵达 </p>
+        <p> Will Block Off Attack For Every </p>
+		<p>Good Will</p>
+        <p>Based On Blockchain </p>
       </div>  
   </div>
 
@@ -53,13 +55,21 @@
   @import "../common/font.css";
 
 .prose{
-  font-size: 23px;
-  color:  rgb(245, 74, 51);
-  font-family: FangSong ;
+  font-size: 35px;
+  color:  rgb(243, 171, 89);
+  /* font-family: FangSong ; */
   font-weight:800;
+  /* text-shadow: 0.1em 0.1em #333; */
+  text-shadow: -1px -1px rgb(243, 228, 228), 14px 12px rgba(102, 136, 168, 0.411);
+  width: 68%;
+  height: 330px;
+  margin: auto;
+  background: url('../assets/28-10.png') center center no-repeat;
+  background-size: 100% 180%;
+  font-style: italic; 
 }  
 .prose p{
-  margin: 20px 0;
+  margin: 30px 0;
 }
 .feature{
   width: 60%;
@@ -88,12 +98,12 @@
 }
 
 .charity{
-background-color: #f1c946;
+background-color: #f3c852;
 padding-top: 20px;
 height: 80px;
 }
 .blockchain {
-  background-color:#e96857 ;
+  background-color: #fac25b;
 }
 .blockchain p{
   margin-bottom: 0px;
@@ -102,7 +112,8 @@ height: 80px;
 .insurance{
   height: 80px;
   padding-top: 20px;
-  background-color: #59beec;
+  background-color: #fdeb81;
+
 }
 
 img{
@@ -151,37 +162,46 @@ a {
 }
 
 .container-wrapper {
-  width: 90%;
+  width: 92%;
   height: auto;
   margin: auto;
-  margin-top: 160px;
+  margin-top: 150px;
   /* text-align: center; */
 
 }
 
 .container {
-  background-color: rgb(207, 69, 51);
+  background-color: rgb(46, 90, 139);
   border-radius: 10px;
   width: 100%;
-  height: 30%;
+  height: 480px;
   margin: auto;
   display: inline-block;
   box-shadow: darkgray 0px 0px 30px 5px;
+  
+}
+.bg-img{
+	background: url('../assets/index_bg.png') center center no-repeat;
+	background-size: 90% 126%;
+	width: 100%;
+	height: 500px;
+	
 }
 
 .product-title {
   font-weight: 800;
   color: #ffffff;
-  width: 50%;
+  width: 70%;
   font-size: 35px;
   margin: auto;
-
+  margin-top: 20px;
 }
 
 .product-description {
   font-family: 华文行楷;
   font-weight: 600;
   color: #ffffff;
+  
 }
 
 
