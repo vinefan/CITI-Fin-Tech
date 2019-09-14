@@ -55,7 +55,7 @@
                     type="primary" 
                     icon="el-icon-search"
                     @click="calPrice"
-                    >搜索</el-button>
+                    >估价</el-button>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@ export default {
                     {index: 3, content: "公益项目时间 ≤ 720天" },
                     {index: 4, content: "720天 ≤ 公益项目时间"}  
                 ],
-            calPrice_url: "http://192.168.1.105:9090/start/calPremium",
+            calPrice_url: "http://192.168.1.102:8080/WillBLOCK/calPremium ",
             proj_money: "",
             alert: false,
             msg: "",

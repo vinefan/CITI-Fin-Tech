@@ -17,7 +17,7 @@
 
         <!-- 估价信息展示 -->
         <ShowPrice 
-            v-if="isCalPrice"
+            v-if="true"
             v-on:showInsurance="showInsurance"
             :fee="insurancePrice"></ShowPrice>
 
@@ -52,11 +52,11 @@ export default {
             calPriceInfo: {
                 organization: "",
                 insurance_date: 0,
-                project_money: ""
-            },
+                project_money: "0"
+                },
             isCalPrice: false,
             isInsuring: false,
-            insurancePrice: 0,
+            insurancePrice: 1746.23,
             step: 0,
             org_code: "",
             raise_time: 0,

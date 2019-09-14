@@ -115,7 +115,7 @@ export default {
             // 渲染页面为加载状态
             this.isloading = true;
 
-            var url = "http://192.168.1.106:8080/start/checkLog";
+            var url = "http://192.168.1.102:8080/WillBLOCK/checkLog";
             this.axios({
                 method: "post",
                 url: url,

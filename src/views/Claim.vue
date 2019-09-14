@@ -10,7 +10,7 @@
 </script>
 
 <style scoped>
-@import url("//unpkg.com/element-ui@2.11.0/lib/theme-chalk/index.css");
+
 .claim{
     margin:auto;
     width:80%;

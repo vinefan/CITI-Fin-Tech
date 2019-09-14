@@ -83,13 +83,12 @@ import InsuranceCase from "../components/InsuranceCase"
             search: function() {
                 var project = { "proj_name": this.input };
                 this.axios({
-                    method: 'get',
-                    url: 'http://192.168.1.101:8080/search',
+                    method: 'post',
+                    url: 'http://192.168.1.102:8080/WillBLOCK/search',
                     data: project
                     })
                     .then((response)=> {
-                        this.items = response
-                        // console.log("search successful !")
+                        this.items = response.data
                     })
                     .catch((error)=> {
                         this.error = false
@@ -101,11 +100,10 @@ import InsuranceCase from "../components/InsuranceCase"
         mounted() {
             
             this.axios
-                .get('http://192.168.1.106:8080/centor')
+                .get('http://192.168.1.102:8080//WillBLOCK/index')
                 .then(response => {
-                      this.error = true;
-                      this.items = response.data;
-                      console.log(this.items[0].project_id);    
+                      this.error = false;
+                      this.items = response.data;    
                       this.msg = 'successful'
                 })
                 .catch(error => {

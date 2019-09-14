@@ -44,7 +44,7 @@ export default {
 	data: function(){
 		return{
 			proj_info: {
-                    "project_id": "13100000500004729P关爱留守儿童",
+                    "project_id": "13100000500004729P_关爱留守儿童",
                     "project": {
                         "project_name": "困境女童",
                         "project_url": "https://oalipay-dl-django.alicdn.com/rest/1.0/image?fileIds=RDQVm6RQQVGlcG2hjC32WQAAACMAAQED&zoom=original",
@@ -86,30 +86,31 @@ export default {
                     message: alert_msg,
                     type: 'warning',
                     showClose: false,
-                    duration: '1800',
+                    duration: '3000',
                     });
 					this.$router.push('/cases');
 		},
 		askForProjInfo: function() {
-			
+
 			var project = { "proj_name": this.proj_name };
 			if(project.proj_name == ''){
 				this.backTocases('请先查询');
 				return
 			} 
-
+			 
 			// 发送请求
-			var url = "http://192.168.1.103:8080/index";
+			var url = "http://192.168.1.102:8080/WillBLOCK/search";
 			this.axios({
-				method: "get",
+				method: "post",
 				url: url,
 				data: project
 				})
 				.then((response)=> {
-					this.proj_info = response.data;
+					this.proj_info = response.data[0];
+					this.askForMoneyMerkelTree();
 				})
 				.catch((error)=> {
-					this.backTocases('请重新输入项目名并点击搜索');
+					this.backTocases(error);
 				})
 		},
 		askForMoneyMerkelTree: function() {
@@ -120,7 +121,7 @@ export default {
 				return
 			} 
 			
-			var url = "http://192.168.1.103:8080/start/tree/moneyroot";
+			var url = "http://192.168.1.102:8080/WillBLOCK/tree/moneyroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -128,11 +129,12 @@ export default {
 				})
 				.then((response)=> {
 					this.money_tree = response.data;
+					this.askForAppealMerkelTree()
 				})
 				.catch((error)=>{
 					this.$notify({
                     title: '警告',
-                    message: '网络错误',
+                    message: error,
                     type: 'warning',
                     showClose: false,
                     duration: '1600',
@@ -142,7 +144,7 @@ export default {
 		},
 		askForAppealMerkelTree: function() {
 			var appeal = { "project_id": this.proj_info.project_id};
-			var url = "http://192.168.1.103:8080/start/tree/appealroot";
+			var url = "http://192.168.1.102:8080/WillBLOCK/tree/appealroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -156,15 +158,21 @@ export default {
 					}
 				})
 				.catch((error)=> {
-
+					this.$notify({
+                    title: '警告',
+                    message: error,
+                    type: 'warning',
+                    showClose: false,
+                    duration: '1600',
+                    });
+					this.$router.push('/cases');
 				})
 		},
 		
 	},
 	mounted(){
-		// this.askForProjInfo();
-		this.askForMoneyMerkelTree();
-		this.askForAppealMerkelTree()
+		this.askForProjInfo();
+		
 	}
 }
 </script>

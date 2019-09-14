@@ -77,7 +77,7 @@ export default {
                 "project_id": this.proj_id,
                 "appeal_id": this.appeal_id
             };
-            var url = "http://192.168.1.103:8080/start/tree/appealpath";
+            var url = "http://192.168.1.102:8080/WillBLOCK/tree/appealpath";
 
             if(data.appeal_id == ""){
                 this.$notify({
@@ -102,8 +102,6 @@ export default {
                 return;
             }
             data.appeal_id = this.prefix + data.appeal_id;
-            alert(data.appeal_id);
-            alert(data.project_id)
             this.axios({
                 method: "post",
                 data: data,

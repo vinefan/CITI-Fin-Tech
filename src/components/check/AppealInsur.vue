@@ -5,7 +5,7 @@
           <p> {{ appeal.project_id }} </p>
 
           <h3>项目承担组织 </h3>
-          <p> {{ appeal.org_name }} </p>
+          <p> {{ appeal.organization }} </p>
 
           <h3>合同编号</h3>
           <p> {{ appeal.insurance_id }} </p>
@@ -53,7 +53,7 @@ export default {
                 "project_id": this.appeal.project_id,
                 "censor_state": result
             };
-            var url = 'http://192.168.1.105:8080/thirdOrgIndex/censorAppeal';
+            var url = 'http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex/censorAppeal';
             // 发送请求
             this.axios({
                 method: 'post',

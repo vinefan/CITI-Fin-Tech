@@ -9,11 +9,11 @@
                 </div>
                 <div class="info-item">
                     <h4>捐款总额</h4>
-                    <p>{{money_tree.merkle_tree.raised_money}}</p>
+                    <p>{{money_tree.merkle_tree.raised_money}} 元</p>
                 </div>
                 <div class="info-item">
                     <h4>捐款总人数</h4>
-                    <p>{{money_tree.merkle_tree.donate_amount}}</p>
+                    <p>{{money_tree.merkle_tree.donate_amount}} 人</p>
                 </div>
                 <div class="info-item" id="last-item">
                     <h4>捐款序列号可查询范围</h4>
@@ -92,7 +92,7 @@ export default {
                 return;
             }
             // 发送请求
-            var url = "http://192.168.1.103:8080/start/tree/moneypath";
+            var url = "http://192.168.1.102:8080/WillBLOCK/tree/moneypath";
             this.axios({
                 method: "post",
                 data: data,
@@ -105,7 +105,7 @@ export default {
                 .catch((error)=> {
                     this.$notify.error({
                         title: '错误',
-                        message: error.data
+                        message: error
                         });
                     this.have_node_list = false;
                 })

@@ -117,7 +117,7 @@ export default {
                     type: 'warning',
                     showClose: false,
                     duration: '1400',
-                    offset: 60
+                    offset: 80
 				});
 				
 			}
@@ -129,7 +129,7 @@ export default {
 					type: 'warning',
 					showClose: false,
 					duration: '1400',
-					offset: 120
+					offset: 160
 				});
 			}
 			if (appeal.appeal_reason == '' && appeal.donor_pwd == '' && appeal.project_id == '') {
@@ -137,28 +137,31 @@ export default {
 			}
 
 			// jiami
-			appeal.donor_pwd = this.rsaEncrypt(appeal.donor_pwd);
+			// appeal.donor_pwd = this.rsaEncrypt(appeal.donor_pwd);
 			
-			var url = "http://192.168.1.106:8080/start/receiveAppeal" ;
+			var url = "http://192.168.1.102:8080/WillBLOCK/receiveAppeal" ;
 			this.axios({
 				method: 'post',
 				data: appeal,
 				url: url 
 				})
 				.then((response) => {
-							this.$notify({
-								title: '成功',
-								message: '您的申请已提交成功',
-								type: 'success',
-								offset: 100,
-								duration: '2000'
-							});
-							this.proj_id = '';
-							this.donor_pwd = '';
-							this.appeal_reason = '';
+					this.$notify({
+						title: '成功',
+						message: '您的申请已提交成功',
+						type: 'success',
+						offset: 100,
+						duration: '2000'
+					});
+					this.proj_id = '';
+					this.donor_pwd = '';
+					this.appeal_reason = '';
 				})
 				.catch((error)=> {
-
+					this.$notify.error({
+                        title: '错误',
+                        message: error
+                        });
 				})
 
 		}

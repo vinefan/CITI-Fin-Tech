@@ -53,11 +53,6 @@ export default new Router({
       component: Appeal
     },
     {
-      path: '/check/in/cases',
-      name: 'cases',
-      component: Cases
-    },
-    {
       name: 'linktocharity',
       path: '/charity/:proj_name',
       component: Charity,

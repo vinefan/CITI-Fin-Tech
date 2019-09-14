@@ -94,7 +94,7 @@ export default {
 			var data = {
 				"third_org_name": this.$store.state.supervisor_username
 			}
-			var url = "http://192.168.1.105:8080/thirdOrgIndex"
+			var url = "http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex"
 			// 请求待审保单
 			this.axios({
 				method: "post",

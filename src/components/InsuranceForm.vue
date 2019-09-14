@@ -298,7 +298,7 @@ export default {
 			this.$emit("lastStep");
 			this.axios({
 				method: "post",
-				url: "http://192.168.1.105:9090/start/receiveForm",
+				url: "http://192.168.1.102:8080/WillBLOCK/receiveForm",
 				data: this.form
 				})
 				.then((response)=> {

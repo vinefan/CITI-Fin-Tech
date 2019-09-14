@@ -151,7 +151,7 @@ export default {
                 "project_id": this.insur.project_id,
                 "censor_state": this.censor_state
             }
-            var url = 'http://192.168.1.105:8080/thirdOrgIndex/censorInsurance ';
+            var url = 'http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex/censorInsurance ';
             this.axios({
                 method: "post",
                 data: data,
