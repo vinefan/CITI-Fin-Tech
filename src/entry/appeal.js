@@ -24,11 +24,11 @@ new Vue({
     methods: {
         checkLogin: function(){
             
-              if(!this.$cookies.get('DonorSession')){
-                  this.$router.push('/appeal');
-              }else{
-                  this.$router.push('/appeal/in');
-              }
+            if(!this.$cookies.get('DonorSession')){
+                this.$router.push('/appeal');
+            }else{
+                this.$router.push('/appeal/in');
+            }
         }
     },
     created(){

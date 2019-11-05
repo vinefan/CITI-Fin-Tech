@@ -77,7 +77,7 @@ export default {
                 "project_id": this.proj_id,
                 "appeal_id": this.appeal_id
             };
-            var url = "http://192.168.1.102:8080/WillBLOCK/tree/appealpath";
+            var url = "http://10.64.111.98:8080/WillBLOCK/tree/appealpath";
 
             if(data.appeal_id == ""){
                 this.$notify({

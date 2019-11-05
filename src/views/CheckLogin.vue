@@ -11,7 +11,7 @@
         <div class="login-bg">
             <div class="login">
                 <div class="username">
-                    <p>Username</p>
+                    <p>用户名</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.username" 
@@ -21,7 +21,7 @@
                     </el-input>
                 </div>
                 <div class="password">
-                    <p>Password</p>
+                    <p>密码</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.password" 
@@ -33,7 +33,7 @@
                 </div>
                 <div class="sign-up">
                     <el-button type="primary" @click="sendLoginInfo">
-                        Sign in
+                        登录
                         <i class="el-icon-upload el-icon--right"></i>
                     </el-button>
                 </div>
@@ -41,7 +41,7 @@
                 <!-- loading  -->
                 <div class="load" v-if="isloading">
                     <i class="el-icon-loading"/>
-                    <p>loading...</p>
+                    <p>加载中...</p>
                 </div>
 
             </div>
@@ -116,7 +116,7 @@ export default {
             // 发送请求
             this.axios({
                 method: "post",
-                url:"http://192.168.1.102:8080/WillBLOCK/thirdLoginIn",
+                url:"http://10.64.111.98:8080/WillBLOCK/thirdLoginIn",
                 data: user
                 })
                 .then((response)=> {

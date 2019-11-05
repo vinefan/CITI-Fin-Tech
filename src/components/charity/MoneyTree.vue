@@ -61,14 +61,16 @@ export default {
         }
     },
     methods:{
-        search: function(){
-            
+        // 向服务器查询序列号
+        search: function(){  
+            // 发送信息
             var data = {
                 "project_id": this.proj_id,
                 "donor_id": this.donor_id
             };
             
-            // 判断数据是否正确
+            // 判断发送信息是否正确
+            // 错误则提示错误原因
             if(data.donor_id == ""){
                 this.$notify({
                     title: '警告',
@@ -92,7 +94,7 @@ export default {
                 return;
             }
             // 发送请求
-            var url = "http://192.168.1.102:8080/WillBLOCK/tree/moneypath";
+            var url = "http://10.64.111.98:8080/WillBLOCK/tree/moneypath";
             this.axios({
                 method: "post",
                 data: data,

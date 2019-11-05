@@ -8,7 +8,6 @@
 		<!-- 资金树信息 -->
 		<MoneyTree v-bind:money_tree="money_tree" 
 				   v-bind:proj_id="proj_info.project_id">
-
 		</MoneyTree>
 		<!-- 申述树信息 -->
 		<AppealTree v-bind:appeal_tree="appeal_tree" 
@@ -32,7 +31,6 @@
 import Program from './Program';
 import AppealTree from './AppealTree';
 import MoneyTree from './MoneyTree';
-import { all } from 'q';
 
 export default {
 	name: "Charity",
@@ -91,15 +89,13 @@ export default {
 					this.$router.push('/cases');
 		},
 		askForProjInfo: function() {
-
 			var project = { "proj_name": this.proj_name };
 			if(project.proj_name == ''){
 				this.backTocases('请先查询');
 				return
-			} 
-			 
+			} 		 
 			// 发送请求
-			var url = "http://192.168.1.102:8080/WillBLOCK/search";
+			var url = "http://10.64.111.98:8080/WillBLOCK/search";
 			this.axios({
 				method: "post",
 				url: url,
@@ -121,7 +117,7 @@ export default {
 				return
 			} 
 			
-			var url = "http://192.168.1.102:8080/WillBLOCK/tree/moneyroot";
+			var url = "http://10.64.111.98:8080/WillBLOCK/tree/moneyroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -144,7 +140,7 @@ export default {
 		},
 		askForAppealMerkelTree: function() {
 			var appeal = { "project_id": this.proj_info.project_id};
-			var url = "http://192.168.1.102:8080/WillBLOCK/tree/appealroot";
+			var url = "http://10.64.111.98:8080/WillBLOCK/tree/appealroot";
 			this.axios({
 				method: "post",
 				url: url,

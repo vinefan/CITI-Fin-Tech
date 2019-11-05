@@ -1,5 +1,6 @@
 
 <template >
+
   <div class="container-wrapper">
     <img src="../assets/logo.png"  />
 
@@ -36,7 +37,7 @@
 
       <div class="prose">
         <p> Will Block Off Attack For Every </p>
-		<p>Good Will</p>
+		    <p>Good Will</p>
         <p>Based On Blockchain </p>
       </div>  
   </div>
@@ -46,7 +47,6 @@
 <script>
     export default {
         name: "Banner",
-
     }
 </script>
 

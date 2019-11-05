@@ -1,39 +1,39 @@
 <template>
   <div class="appeal-insur-wrapper">
-      <div class="appeal-info">
-          <h3>项目ID </h3>
-          <p> {{ appeal.project_id }} </p>
+        <!-- 申诉信息表 -->
+        <div class="appeal-info">
+            <h3>项目ID </h3>
+            <p> {{ appeal.project_id }} </p>
 
-          <h3>项目承担组织 </h3>
-          <p> {{ appeal.organization }} </p>
+            <h3>项目承担组织 </h3>
+            <p> {{ appeal.organization }} </p>
 
-          <h3>合同编号</h3>
-          <p> {{ appeal.insurance_id }} </p>
+            <h3>合同编号</h3>
+            <p> {{ appeal.insurance_id }} </p>
 
-          <h3>申述次数</h3>
-          <p> {{ appeal.appeal_times }} </p>
-          
-          <h3>参审人数</h3>
-          <p> {{ appeal.censor_number }} </p>
+            <h3>申述次数</h3>
+            <p> {{ appeal.appeal_times }} </p>
+            
+            <h3>参审人数</h3>
+            <p> {{ appeal.censor_number }} </p>
 
-          <h3>申诉原因 </h3>
-          <p> {{ appeal.appeal_apply_reason }} </p>
-      </div>
+            <h3>申诉原因 </h3>
+            <p> {{ appeal.appeal_apply_reason }} </p>
+        </div>
+        <!-- 处理申诉表单按钮 -->
+        <div class="buttons">
+                <el-button  type="success" 
+                            icon="el-icon-check" 
+                            @click="returnAppealResult('1')">
+                    同意
+                </el-button>
 
-
-      <div class="buttons">
-            <el-button  type="success" 
-                        icon="el-icon-check" 
-                        @click="returnAppealResult('1')">
-                同意
-            </el-button>
-
-            <el-button  type="warning" 
-                        icon="el-icon-circle-close" 
-                        @click="returnAppealResult('-1')">
-                驳回
-            </el-button>
-      </div>
+                <el-button  type="warning" 
+                            icon="el-icon-circle-close" 
+                            @click="returnAppealResult('-1')">
+                    驳回
+                </el-button>
+        </div>
   </div>
 </template>
 
@@ -47,13 +47,15 @@ export default {
         }
     },
     methods:{
+        // 返回申诉表单处理结果
         returnAppealResult: function(result){
+            // 提取store.js中保存的当前用户的用户名与密码
             var data = {
                 "third_org_name": this.$store.supervisor_username,
                 "project_id": this.appeal.project_id,
                 "censor_state": result
             };
-            var url = 'http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex/censorAppeal';
+            var url = 'http://10.64.111.98:8080/WillBLOCK/thirdOrgIndex/censorAppeal';
             // 发送请求
             this.axios({
                 method: 'post',

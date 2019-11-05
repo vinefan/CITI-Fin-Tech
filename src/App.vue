@@ -38,15 +38,20 @@
     },
     data: function(){
       return{
+        // active_route保存当前路径
         active_route: "/"
       }
     },
     methods:{
+      // 
       changeRoute: function(){
         this.$router.push("/cases");
         this.active_route = "/cases";
       }
     },
+    // App组件挂载时触发函数
+    // 修改当前路径值
+    // 如果跳转至 /cases ，则滚动至首页的1300px位置
     mounted(){
       this.active_route = this.$route.path;
       if(this.active_route =="/cases"){

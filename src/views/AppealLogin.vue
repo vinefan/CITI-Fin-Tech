@@ -11,7 +11,7 @@
         <div class="login-bg">
             <div class="login">
                 <div class="username">
-                    <p>Project ID</p>
+                    <p>项目名称</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.username" 
@@ -21,7 +21,7 @@
                     </el-input>
                 </div>
                 <div class="password">
-                    <p>Donor Password</p>
+                    <p>捐助序列号</p>
                     <el-input 
                         placeholder="" 
                         v-model="user.password" 
@@ -33,7 +33,7 @@
                 </div>
                 <div class="sign-up">
                     <el-button type="primary" @click="sendLoginInfo">
-                        Sign in
+                        登录
                         <i class="el-icon-upload el-icon--right"></i>
                     </el-button>
                 </div>
@@ -41,12 +41,12 @@
                 <!-- loading  -->
                 <div class="load" v-if="isloading">
                     <i class="el-icon-loading"/>
-                    <p>loading...</p>
+                    <p>加载中...</p>
                 </div>
 
                 <div class="error" v-if="iserror">
                     <i class="el-icon-warning"/>
-                    <p>username or password is worry.</p>
+                    <p>用户名或密码错误.</p>
                 </div>
 
             </div>

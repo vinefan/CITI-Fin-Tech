@@ -1,10 +1,12 @@
 <template>
   <div class="cal-table">
         <div class="cal-table-wrapper">
+            <!-- 错误填写提示信息 -->
             <p class="alert" v-if="alert">
                 <i class="el-icon-question"/>
                 {{ msg }}
             </p>
+            <!-- 公益组织名 -->
             <div class="cal-form-item">
                 <p>公益组织 (公益项目发起人) :</p>
                 <el-input   
@@ -13,7 +15,7 @@
                     clearable>
                 </el-input>
             </div>
-
+            <!-- 慈善项目筹款时间 -->
              <div class="cal-form-item">
                 <p>筹款时间区间:</p>
                 <el-date-picker
@@ -28,6 +30,7 @@
                     :picker-options="pickerOptions">
                 </el-date-picker>
             </div>
+            <!-- 慈善项目运营时间 -->
             <div class="cal-form-item">
                 <p>公益项目区间:</p>
                 <el-date-picker
@@ -42,7 +45,7 @@
                     :picker-options="pickerOptions">
                 </el-date-picker>
             </div>
-
+            <!-- 慈善项目筹款目标 -->
             <div class="cal-form-item">
                 <p>项目筹款目标 :</p>
                 <el-input   
@@ -64,21 +67,35 @@
 <script>
 export default {
     name: "CalForm",
+    // 父组件InsurePage传来数据
+    // calPriceInfo: {
+    //             organization: "",
+    //             insurance_date: 0,
+    //             project_money: "0"
+    //             },
     props: ['calPriceInfo'],
     data: function(){
         return{
+            // 保存筹款开始时间和终止时间
             raise_money_quantum: [],
+            // 保存慈善项目运行的开始时间和结束时间
             charity_quantum: [],
+            // 公益项目可选投保区间列表
             list: [ {index: 0, content: "公益项目时间 ≤ 90天" },
                     {index: 1, content: "公益项目时间 ≤ 180天" },
                     {index: 2, content: "公益项目时间 ≤ 360天" },
                     {index: 3, content: "公益项目时间 ≤ 720天" },
                     {index: 4, content: "720天 ≤ 公益项目时间"}  
                 ],
-            calPrice_url: "http://192.168.1.102:8080/WillBLOCK/calPremium ",
+            calPrice_url: "http://10.64.111.98:8080/WillBLOCK/calPremium ",
             proj_money: "",
+            // 表示用户填写保单是否错误
+            // 默认：false
+            // 触发错误时被修改为true
             alert: false,
+            // 保存错误提示信息
             msg: "",
+            // 保存服务器端计算完保费后发来的信息，用于回传给父组件Insurepage
             data: {
                 calPriceInfo: "",
                 org_code: "",
@@ -90,6 +107,7 @@ export default {
         }
     },
     watch: {
+        // 监听用户输入项目金额是否合法
         proj_money: function () {
             // 判断金额输入框是否是一个数
             if(isNaN(this.proj_money)){
@@ -114,6 +132,8 @@ export default {
     },
 
     methods: {
+        // 错误提示函数
+        // alert_msg：当前错误信息
         error: function(alert_msg){
 			this.$notify({
                     title: '警告',
@@ -122,9 +142,9 @@ export default {
                     showClose: false,
                     duration: '2200',
                     });
-		},
+        },
+        // 用户点击查询保费后触发函数
         calPrice: function(){
-            
             var calPriceInfo = this.calPriceInfo;
             calPriceInfo.project_money = this.proj_money ;
             // 筹款时间取出
@@ -150,11 +170,8 @@ export default {
                 this.error(this.msg);
                 return;
             }
-  
-
             // 计算insurance_date 
-            var date = charity_end.getDate() - charity_start.getDate();
-            
+            var date = charity_end.getDate() - charity_start.getDate();      
             if(date <= 90 ){
                 calPriceInfo.insurance_date = 0
             }
@@ -170,7 +187,6 @@ export default {
             if(720 < date){
                 calPriceInfo.insurance_date = 4
             }
-
 
             // 发送异步请求
             this.axios({

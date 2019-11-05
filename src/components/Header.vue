@@ -55,10 +55,11 @@
             }
         },
         methods:{
-            changeColor: function (item){
-                
+            // 修改当前导航栏的激活项
+            changeColor: function (item){   
                 item.active = !item.active 
             },
+            // 点击“查询”项后触发函数
             search: function(index){
                 if(index==3){                        
                     this.$emit("changeRoute");

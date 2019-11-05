@@ -17,13 +17,13 @@
 
         <!-- 估价信息展示 -->
         <ShowPrice 
-            v-if="true"
+            v-if="1"
             v-on:showInsurance="showInsurance"
             :fee="insurancePrice"></ShowPrice>
 
         <!-- 保单 v-if="isInsuring" -->
         <Insurance
-            v-if="isInsuring"
+            v-if="1"
             :calPriceInfo="calPriceInfo"
             :fee="insurancePrice"
             :org_code="org_code"
@@ -49,22 +49,35 @@ export default {
     },
     data: function(){
         return{
+            // calPriceInfo用于发送至服务器计算保费
             calPriceInfo: {
                 organization: "",
                 insurance_date: 0,
                 project_money: "0"
                 },
+            // 标记是否计算出保费
+            // 默认值：false
+            // 若已计算出保费，isCalprice的值修改为true，进入下一步填写保单
             isCalPrice: false,
+            // 标记用户是否确认投保
+            // 默认值: false
+            // 当用户点击“确认按钮”，isInsuring修改为true
             isInsuring: false,
-            insurancePrice: 1746.23,
+            // 保存服务器端发来保费
+            insurancePrice: 0,
+            // 记录用户投保所处阶段
             step: 0,
+            // 保存投保组织代码
             org_code: "",
+            // 保存慈善项目筹款总金额
             raise_time: 0,
+            // 保存慈善项目运营时长
             charity_time: 0
 }
     },
     methods: {
-        // function 缺参数
+        // 显示保费函数 
+        // data：ShowPrice组件回传数据
         showPrice: function(data){
         
             // 处理子组件传来的data 
@@ -76,14 +89,18 @@ export default {
 
             // 显示showPrice组件          
             this.isCalPrice = true;
-            // 步骤条改变
+            // 修改步骤条进度
             this.step = 1;
        
         },
+        // 显示保单第二部分
         showInsurance: function(){
+            // 是否投保修改为true
             this.isInsuring = true;
+            // 修改步骤条进度
             this.step = 2;
         },
+        // 用户点击发送投保单后出发该函数
         lastStep: function(){
             this.step = 3;
         }

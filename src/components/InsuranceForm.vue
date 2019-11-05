@@ -219,10 +219,10 @@
 
 		<el-button 
 			type="primary"
-			 class="send"
-			 @click="send">
-			 确认提交
-			 <i class="el-icon-upload el-icon--right"></i>
+			class="send"
+			@click="send">
+			确认提交
+			<i class="el-icon-upload el-icon--right"></i>
 		</el-button>
 		
   	</div>
@@ -242,6 +242,7 @@ export default {
 		return{
 			email_suffixs: ['@qq.com','@163.com','@126.com'],
 			options: ['身份证'],
+			// 保存完整保单信息
 			form: {
 				insurance_date: 0,
 				insurance_fee: 0,
@@ -280,6 +281,7 @@ export default {
 		}
 	},
 	methods: {
+		// 提交完整保单信息
 		send: function(){
 			// 保费  
 			this.form.insurance_fee = this.fee;
@@ -295,10 +297,12 @@ export default {
 			this.form.applicant.organization = this.calPriceInfo.organization;
 			// 组织代号
 			this.applicant.org_id = this.org_code;
+			// 触发父组件Insurepage的lastStep监听器
 			this.$emit("lastStep");
+			// 异步发送保单信息
 			this.axios({
 				method: "post",
-				url: "http://192.168.1.102:8080/WillBLOCK/receiveForm",
+				url: "http://10.64.111.98:8080/WillBLOCK/receiveForm",
 				data: this.form
 				})
 				.then((response)=> {
@@ -306,7 +310,7 @@ export default {
 					this.isOk = true;
 					
 				})
-				.catch((error)=>{
+				.catch(()=>{
 					this.$notify({
                     title: '警告',
                     message: '上传失败',
@@ -316,10 +320,10 @@ export default {
                     });
 				})
 		},
+		// 邮箱后缀补全
 		emailComplete(queryString, cb){
-
 			var completedEmails = [];
-			for(i = 0; i<this.email_suffixs.length; i++){
+			for(var i = 0; i<this.email_suffixs.length; i++){
 				var email = queryString + this.email_suffixs[i];
 				completedEmails.push(email);
 			}

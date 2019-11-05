@@ -117,18 +117,27 @@ export default {
     props: ['insur','index'],
     data: function(){
         return{
+            // 标记该投保保单是“收起”状态还是“展开”状态
+            // 默认值：0（收起） 
             flag: 0,
+            // 保存投保项目信息
             proj_info: '',
+            // 保存公益组织信息
             applicant: '',
+            // 保存受助人信息
             recip: '',
+            // 保存保单状态按钮值
             insur_box_status: "展开",
+            // 保单状态按钮图标值
             insur_box_icon: "el-icon-arrow-down",
             censor_state: ''
         }
     },
     methods:{
+        // 切换保单状态
+        // 当前保单状态为“收起”，切换为“展开”
+        // 当前保单状态为“展开”，切换为“收起”
         changeBoxStatus: function(){
-
             if(this.flag == 0){
                 this.insur_box_status = "收起";
                 this.insur_box_icon = "el-icon-arrow-up";
@@ -141,17 +150,22 @@ export default {
             }
 
         },
+        // 点击“通过”、“拒绝”按钮触发setResult()
+        // result为对应传入处理结果
         setResult: function(result){
             this.censor_state = result;
             this.returnCheckResult();
         },
+        // 向服务器发送当前保单处理结果
         returnCheckResult: function(){
+            // 返回的处理信息
             var data = {
                 "third_org_name": this.$store.state.supervisor_username,
                 "project_id": this.insur.project_id,
                 "censor_state": this.censor_state
             }
-            var url = 'http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex/censorInsurance ';
+            // 异步请求
+            var url = 'http://10.64.111.98:8080/WillBLOCK/thirdOrgIndex/censorInsurance ';
             this.axios({
                 method: "post",
                 data: data,
@@ -166,12 +180,12 @@ export default {
 						showClose: false,
 						duration: '2200',
                     });
-                    // 去掉当前这个保单
+                    // 从管理界面去掉当前这个保单
                     this.$emit('removeInsur',this.index)
 
                 })
                 .catch((error)=> {
-
+                    // 提示错误信息
                     this.$notify({
 						title: '警告',
 						message: '操作失败',
