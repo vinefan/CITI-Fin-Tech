@@ -2,23 +2,37 @@
   <div class="appeal-insur-wrapper">
         <!-- 申诉信息表 -->
         <div class="appeal-info">
-            <h3>项目ID </h3>
-            <p> {{ appeal.project_id }} </p>
-
-            <h3>项目承担组织 </h3>
-            <p> {{ appeal.organization }} </p>
-
-            <h3>合同编号</h3>
+            <!-- 項目id -->
+            <div>
+                <h3>项目ID :</h3>
+                <p> {{ appeal.project_id }} </p>
+            </div>
+            <!-- 慈善组织-->
+            <div>
+                <h3>慈善组织 : </h3>
+                <p> {{ appeal.organization }} </p>
+            </div>
+            <!-- 保险合同编号 -->
+            <div>
+            <h3>合同编号 :</h3>
             <p> {{ appeal.insurance_id }} </p>
-
-            <h3>申述次数</h3>
-            <p> {{ appeal.appeal_times }} </p>
+            </div>
             
-            <h3>参审人数</h3>
-            <p> {{ appeal.censor_number }} </p>
+            <div>
+            <h3>申述次数 : </h3>
+            <p> {{ appeal.appeal_times }} </p>
+            </div>
 
-            <h3>申诉原因 </h3>
+            <div>
+            <h3>参审人数 : </h3>
+            <p> {{ appeal.censor_number }} </p>
+            </div>
+
+            <div>
+            <h3>申诉原因 : </h3>
             <p> {{ appeal.appeal_apply_reason }} </p>
+            </div>
+
         </div>
         <!-- 处理申诉表单按钮 -->
         <div class="buttons">
@@ -28,7 +42,7 @@
                     同意
                 </el-button>
 
-                <el-button  type="warning" 
+                <el-button  type="info" 
                             icon="el-icon-circle-close" 
                             @click="returnAppealResult('-1')">
                     驳回
@@ -55,7 +69,7 @@ export default {
                 "project_id": this.appeal.project_id,
                 "censor_state": result
             };
-            var url = 'http://10.64.111.98:8080/WillBLOCK/thirdOrgIndex/censorAppeal';
+            var url = 'http://114.67.105.154:9090/WillBLOCK/thirdOrgIndex/censorAppeal';
             // 发送请求
             this.axios({
                 method: 'post',
@@ -90,6 +104,7 @@ export default {
 
 <style scoped>
 .buttons{
+    margin-top: 30px;
     margin-left: 40px;
     margin-bottom: 30px;
 }
@@ -108,16 +123,19 @@ export default {
     margin-top: 30px;
 }
 .appeal-info h3{
-    margin-top: 20px;
-    margin-bottom: 8px;
-    text-align: center;
+    padding-left: 50px;
+    padding-right: 30px;
     color: #2890f7;
+    margin-bottom: 0px;
 }
 .appeal-info p{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-bottom: 0px;
     color: #777;
 }
+.appeal-info h3,
+.appeal-info p{
+    display: inline-block;  
+}
+
 
 </style>

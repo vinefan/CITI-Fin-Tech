@@ -19,14 +19,9 @@
                 <li>
                     <span>[ 项目被保时间 ]</span>
                 </li>
-                <li>
-                    <a :href="proj_info.project.project_url"
-                        >
-                        <i class="el-icon-d-arrow-right"></i>
-                        <i class="el-icon-d-arrow-right"></i>
-                        前往公益项目发布平台
-                        
-                    </a>
+                <li class="switch-to-ali">
+                    <el-button type="success" round><a :href="proj_info.project.project_url"> 前往公益项目发布平台</a></el-button>
+                    
                 </li>
             </ul>
         </div>
@@ -41,10 +36,13 @@ export default {
 </script>
 
 <style scoped>
+.content .switch-to-ali{
+    margin-top: 20px;
+}
 .program-wrapper{
     width: 88%;
     margin: 80px auto;
-    height: 340px;
+    height: 300px;
     border: 1px solid #dddddd;
     border-radius: 6px;
     box-shadow: 2px 2px 8px 4px #dddddd;
@@ -56,25 +54,24 @@ export default {
   float: left;
   min-width: 220px;
   height: 280px;
-  background: url("../../assets/cat.jpg") center center no-repeat;
+  background: url("../../assets/sample.png") center center no-repeat;
   background-size: 220px;
-  margin-top: 30px;
-  margin-left: 10px;
   padding-right: 40px;
-  border-right: 1px solid #aaaaaa
-}
+ }
 
 
 .content{
     float: left;
     /* display: inline-block; */
-    margin-top: 40px;
+    margin-top: 10px;
     width: 50%;
-    height: 250px;
+    height: 220px;
     /* border: 1px solid #333; */
 }
 .content ul{
     display: inline-block;
+    text-align: left;
+    padding-left: 0px;
 }
 .content li{
     list-style-type: none;
@@ -90,17 +87,12 @@ export default {
     color: #1574e0;
 }
 .content a{
-    display: inline-block;
-    color: orange;
+    color: #fff;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
-    font-weight: 400;
-    margin-top: 30px;
+}
 
-}
-.content a :hover{
-    font-size: 30px;
-}
+
 
 </style>

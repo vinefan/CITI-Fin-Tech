@@ -60,25 +60,31 @@ export default {
     props: ['appeal_tree','proj_id'],
     data: function(){
         return{
+            // 错误标识
             isError: false,
+            // 服务器返回是否为空标识
             have_node_list: false,
+            // 节点列表
             node_list: '',
+            // 申诉项目ID
             appeal_id: '',
             progress: {
                 color: '#f56c6c', percentage: 0
             },
+            // 默克尔树前缀
             prefix: '',
         }
     },
     methods:{
+        // 申诉查询
         search: function(){
-            
+            // 查询信息
             var data = {
                 "project_id": this.proj_id,
                 "appeal_id": this.appeal_id
             };
-            var url = "http://10.64.111.98:8080/WillBLOCK/tree/appealpath";
-
+            var url = "http://114.67.105.154:9090/WillBLOCK/tree/appealpath";
+            // 判断信息是否填写完整
             if(data.appeal_id == ""){
                 this.$notify({
                     title: '警告',
@@ -90,6 +96,7 @@ export default {
                 });
                 return;
             };
+            // 判断查询信息是否非法
             if(data.appeal_id<this.appeal_tree.startNumber && data.appeal_id>this.appeal_tree.endNumber){
                 this.$notify({
                     title: '警告',
@@ -101,7 +108,9 @@ export default {
                 });
                 return;
             }
+            // 添加前缀
             data.appeal_id = this.prefix + data.appeal_id;
+            // 发送请求
             this.axios({
                 method: "post",
                 data: data,
@@ -196,21 +205,25 @@ export default {
 
 .tree{
     float: left;
-    width: 53%;
-    min-width: 580px;
+    width: 45.5%;
+    min-width: 540px;
     margin: 20px 0px;
     height: 400px;
     background: url('../../assets/appeal_tree.png')  no-repeat;
     background-position-y: -50px;
     background-position-x: -40px;
-    background-size: 720px 420px;
-    border-right: 1px solid #dddddd;
+    background-size: 610px 420px;
+    border-right: 1px dotted #dddddd;
 }
 .info{
     display: inline-block;
     width: 43%;
     height: 380px;
     margin-top: 20px;
-   
+    padding-left: 30px;
+}
+.info p{
+    padding-left: 5px;
+    color: #444
 }
 </style>

@@ -2,8 +2,7 @@
     <div class="feature-wrapper">
         <div class="title-wrapper">
            <div class="id-num" v-bind:style="{backgroundColor: item.style[1]}">{{ item.id }}</div>
-           <div class="title" ><p v-bind:style="{backgroundColor: item.style[1]}">{{item.title}}</p></div> 
-           
+           <div class="title" ><p v-bind:style="{backgroundColor: item.style[1], width:item.width+'px'}">{{item.title}}</p></div> 
         </div>
         
         <div>
@@ -68,26 +67,27 @@ li{
 .title-wrapper div {
     display: inline-block;
     color: #ffffff;
-    font-family: FangSong;
-    font-size: 23px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
     font-weight: 400;
-    line-height:50px; 
+    line-height:43px; 
     
 }
 .id-num{
-    width: 50px;
-    height: 50px;
+    width: 46px;
+    height: 46px;
     margin-right: 30px;
     border-radius: 25px;  
     
 }
 .title{
+    
     width: 80%;
-    height: 50px;
+    height: 40px;
 
 }
 .title p {
-    border-radius: 25px;
+    border-radius: 23px;
     width: 300px;
 }
 

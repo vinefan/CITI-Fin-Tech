@@ -116,7 +116,7 @@ export default {
             // 发送请求
             this.axios({
                 method: "post",
-                url:"http://10.64.111.98:8080/WillBLOCK/thirdLoginIn",
+                url:"http://114.67.105.154:9090/WillBLOCK/thirdLoginIn",
                 data: user
                 })
                 .then((response)=> {

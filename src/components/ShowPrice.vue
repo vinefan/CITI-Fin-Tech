@@ -28,9 +28,9 @@ export default {
 <style scoped>
 .price-info{
 	display: inline-block;
-	width: 600px;
+	width: 640px;
 	/* height: 260px; 去掉高度设置，让高度随内容变化 */
-	background-color: #ddd;
+	background-color: #ffffff;
 	margin-right: 40px;
 	margin-top: 20px;
 	border-left: #aaa 1px solid;
@@ -42,18 +42,17 @@ export default {
 }
 
 .price-info h1{
-	margin-left: 50px;
-	color: rgb(226, 96, 96);
+	margin-left: 40px;
+	color: rgb(36, 150, 243);
 }
 
 .show-price{
   width: 88%;
   /* 设置最小宽度 */
   min-width: 880px;
-  background-color: #eee;
-  margin: 100px auto;
+  margin-top: 100px;
+  margin-left: 0px;
   border-radius: 10px;
-  padding: 30px 20px;
 }
 
 </style>

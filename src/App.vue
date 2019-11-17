@@ -2,15 +2,16 @@
 <template>
   <div id="app">
     <!-- 页头 -->
-    <Header v-on:changeRoute="changeRoute"></Header>
-    <!-- banner -->
-    <Banner></Banner>
+    <div class="header-banner">
+      <Header v-on:changeRoute="changeRoute"></Header>
+    </div>
+    
     <!-- 导航栏 -->
     <div id="nav">
       <el-menu mode="horizontal"
                router="true"
                class="nav"
-               active-text-color="#3a83cc"
+               active-text-color="#0ca1a0"
                :default-active="active_route">
         <el-menu-item index="/" id="detail">产品介绍</el-menu-item>
         <el-menu-item index="/proposal">保险条例</el-menu-item>
@@ -26,15 +27,14 @@
 </template>
 <script>
   import Footer from "./components/Footer";
-  import Banner from "./components/Banner"
   import Header from "./components/Header";
+
   export default {
 
     name: 'app',
     components: {
       Header,
       Footer,
-      Banner
     },
     data: function(){
       return{
@@ -64,11 +64,8 @@
 <style>
 
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #888888;
+    color: #555;
     
   }
 
@@ -80,15 +77,21 @@
 
 
   #nav {
-    width: 70%;
+    width: 76%;
     margin: auto;
     margin-top: 200px;
   }
 
+  .header-banner{
+  height: 1500px;
+    background: url('./assets/banner.png')center center no-repeat;
+    background-size: 100% ;
+    background-position-y: -20px;
+  }
 
   .el-menu-item {
-    width: 15%;
-    font-size: 22px !important;
+    width: 17%;
+    font-size: 21px !important;
     font-family: 华文行楷;
 
   }

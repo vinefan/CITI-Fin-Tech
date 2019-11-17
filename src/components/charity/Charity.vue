@@ -15,15 +15,6 @@
 					v-if="isAppealed">
 
 		</AppealTree>
-		<!-- footer -->
-		<!-- <div id="footer">
-            <div>
-                <p>版权所有©西南财经大学</p>
-                <p>CopyRight©Southwestern University Of Financial
-                     And Economics.All rights reserved.</p>
-                <p>联系 : 0000000</p>
-            </div>
-        </div> -->
 	</div>
 </template>
 
@@ -41,6 +32,7 @@ export default {
 	},
 	data: function(){
 		return{
+			// 保存项目信息
 			proj_info: {
                     "project_id": "13100000500004729P_关爱留守儿童",
                     "project": {
@@ -70,14 +62,19 @@ export default {
                     }],
                     "insurance_state": true
                 },
+			
+			// 保存捐款默克尔树信息
 			money_tree: '',
+			// 保存申诉默克尔树
 			appeal_tree: '',
+			// 项目是否被发起申诉标识
 			isAppealed: false,
 		}
 	},
 	props: ['proj_name'],
 	
 	methods:{
+		// 网络异常时跳回
 		backTocases: function(alert_msg){
 			this.$notify({
                     title: '警告',
@@ -88,6 +85,7 @@ export default {
                     });
 					this.$router.push('/cases');
 		},
+		// 请求项目信息
 		askForProjInfo: function() {
 			var project = { "proj_name": this.proj_name };
 			if(project.proj_name == ''){
@@ -95,7 +93,7 @@ export default {
 				return
 			} 		 
 			// 发送请求
-			var url = "http://10.64.111.98:8080/WillBLOCK/search";
+			var url = "http://114.67.105.154:9090/WillBLOCK/search";
 			this.axios({
 				method: "post",
 				url: url,
@@ -109,6 +107,7 @@ export default {
 					this.backTocases(error);
 				})
 		},
+		// 请求捐款默克尔树信息
 		askForMoneyMerkelTree: function() {
 		
 			var project = { "project_id": this.proj_info.project_id};
@@ -117,7 +116,7 @@ export default {
 				return
 			} 
 			
-			var url = "http://10.64.111.98:8080/WillBLOCK/tree/moneyroot";
+			var url = "http://114.67.105.154:9090/WillBLOCK/tree/moneyroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -138,9 +137,11 @@ export default {
 					this.$router.push('/cases');
 				})
 		},
+		// 请求项目申诉默克尔树上信息
+		// 若项目未被发起申诉，申诉默克尔树不存在
 		askForAppealMerkelTree: function() {
 			var appeal = { "project_id": this.proj_info.project_id};
-			var url = "http://10.64.111.98:8080/WillBLOCK/tree/appealroot";
+			var url = "http://114.67.105.154:9090/WillBLOCK/tree/appealroot";
 			this.axios({
 				method: "post",
 				url: url,
@@ -166,9 +167,9 @@ export default {
 		},
 		
 	},
+	// 挂载函数
 	mounted(){
 		this.askForProjInfo();
-		
 	}
 }
 </script>

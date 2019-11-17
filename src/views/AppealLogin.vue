@@ -93,8 +93,8 @@ export default {
         sendLoginInfo: function(){
 
             var user = {
-                username: "vine",
-                password: "123456"
+                username: "",
+                password: ""
             };
             user.username = this.user.username;
             user.password = this.user.password;
@@ -115,7 +115,7 @@ export default {
             // 渲染页面为加载状态
             this.isloading = true;
 
-            var url = "http://192.168.1.102:8080/WillBLOCK/checkLog";
+            var url = "http://114.67.105.154:9090/WillBLOCK/checkLog";
             this.axios({
                 method: "post",
                 url: url,

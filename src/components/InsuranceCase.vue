@@ -1,33 +1,41 @@
 <template>
   <div class="case">
+    <div class="proj-left">
       <!-- 项目图片 -->
       <div class="proj-picture"></div>
+      <ul>
+        <li>
+            <span>[项目]</span>
+            {{item.project.project_name}}
+        </li>
+        <li>
+            <span>[金额]</span>
+            {{item.project.project_money}}元
+          </li>
+      </ul>
+      
+    </div>
+      
       <!-- 项目简介 -->
       <div class="content">
         <ul>
           <li>
-            <span>[项目名]</span>
-            {{item.project.project_name}}
-          </li>
-          <li>
             <span>[项目简介]</span>
-            {{item.project.project_reason}}
-
+            <p>{{item.project.project_reason}}</p>        
           </li>
           <li>
-            <span>[发布人]</span>
-            {{item.applicant.organization}}
+            <span>[发起平台]</span>
+            <p>{{item.applicant.organization}}</p>
           </li>
-          <li>
-            <span>[金额]</span>
-            {{item.project.project_money}}￥
-          </li>
+          
           <li>
             <span>[保险状态]</span>
           </li>
           <li>
               <router-link :to="{ name: 'linktocharity', params: { proj_name: item.project.project_name }}">
-                查看详情
+                <div class="click-but"> 
+                  <el-button type="primary" round>查看链上信息</el-button>
+                </div>
               </router-link>
           </li>
         </ul>
@@ -68,18 +76,22 @@ export default {
 
   /* 设置最小宽度 */
   min-width: 880px;
-  background-color: #eee;
+  background-color: #ffffff;
   margin: 100px auto;
   border-radius: 10px;
+  box-shadow: 4px 4px 6px 4px #dddddd;
   padding: 30px 20px;
+}
+
+.proj-left{
+  float: left;
 }
 
 /* 实现了图片等比缩放至200px, 居中显示, 不重复 */
 .proj-picture{
-  float: left;
   width: 200px;
   height: 200px;
-  background: url("../assets/cat.jpg") center center no-repeat;
+  background: url("../assets/sample.png") center center no-repeat;
   background-size: 200px;
   margin-top: 30px;
   margin-left: 20px;
@@ -89,27 +101,35 @@ export default {
   float:right;
   width: 600px;
   /* height: 260px; 去掉高度设置，让高度随内容变化 */
-  background-color: #ddd;
-  margin-right: 40px;
+  margin-right: 30px;
   margin-top: 20px;
-  border-left: #aaa 1px solid;
-  opacity: 0.8;
 }
 
 .content li{
-  list-style-type: none;
-  font-family: FangSong;
-  color: #000;
+  /* list-style-type: none; */
+  color: #333;
   font-size: 18px;
   margin-top: 14px;
   padding-right: 5px;
 }
+.proj-left ul,
 .content ul{
   text-align: left;
+  font-size: 16px;
+  padding-left: 18px;
 }
-li span{
-  color: #2c86cf;
-  font-weight: 800;
+
+li{
+  list-style-type: none;
+}
+.proj-left span,
+.content span{
+  font-size: 18px;
+  color: #539cf0;
+  font-weight: bold;
+}
+.content p{
+  margin: 8px 0 24px ;
 }
 
 </style>

@@ -26,6 +26,19 @@
 		</el-menu>
 
 		<div class="view">
+			<div id="welcome">
+				<el-collapse  value="1" accordion>
+					<el-collapse-item name="1">
+						<template slot="title">
+							西南财经大学，下午好！
+							<i class="el-icon-s-management"></i>
+						</template>
+						<div>- 5份保险申请等待您的审批呀</div>
+						<div>- 6份捐助者申述等待您的审批</div>
+					</el-collapse-item>
+				</el-collapse>
+			</div>
+			
 			<div class="insur-module" v-if="atInsur">
 
 				<!-- 动画效果 -->
@@ -94,7 +107,7 @@ export default {
 			var data = {
 				"third_org_name": this.$store.state.supervisor_username
 			}
-			var url = "http://192.168.1.102:8080/WillBLOCK/thirdOrgIndex"
+			var url = "http://114.67.105.154:9090/WillBLOCK/thirdOrgIndex"
 			// 请求待审保单
 			this.axios({
 				method: "post",
@@ -140,7 +153,8 @@ export default {
 			atInsur: true,
 			atAppeal: false,
 			insur_list: [],
-			appeal_list: []
+			appeal_list: [],
+			active: '1'
 		}
 	},
 	mounted(){
@@ -153,6 +167,19 @@ export default {
 </script>
 
 <style scoped>
+#welcome{
+	width: 86%;
+	margin-left: 10%;
+	background: #fff;
+	box-shadow: #f3f3f3 1px 1px 2px 2px;
+	border-radius: 2px;
+}
+.el-collapse{
+	width:84% ;
+	margin: auto;
+}
+
+
 /* 动画效果 */
 .list-complete-item {
   transition: all 2s;

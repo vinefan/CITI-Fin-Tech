@@ -4,7 +4,7 @@
        <Header></Header>
 
        <!-- 步骤条 -->
-        <el-steps :active="step" simple>
+        <el-steps :active="step" >
             <el-step title="估价" icon="el-icon-link" class="gujia"></el-step>
             <el-step title="立即投保" icon="el-icon-collection-tag"></el-step>
             <el-step title="提交保单" icon="el-icon-mouse"></el-step>
@@ -17,13 +17,13 @@
 
         <!-- 估价信息展示 -->
         <ShowPrice 
-            v-if="1"
+            v-if="isCalPrice"
             v-on:showInsurance="showInsurance"
             :fee="insurancePrice"></ShowPrice>
 
         <!-- 保单 v-if="isInsuring" -->
         <Insurance
-            v-if="1"
+            v-if="isInsuring"
             :calPriceInfo="calPriceInfo"
             :fee="insurancePrice"
             :org_code="org_code"
@@ -115,13 +115,15 @@ export default {
     margin: 45px auto;
     padding: 10px 40px;
     min-width: 1000px;
-    background-color: #f8f9fa;
+    background-color: #ffffff;
     border-radius: 20px;
+    box-shadow: 4px 4px 6px 4px #dddddd;
 }
 .el-steps{
     margin-top: 50px;
     width: 50%;
-    height: 35px;    
+    height: 35px;   
+    margin-bottom: 80px; 
 }
 
 

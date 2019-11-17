@@ -1,40 +1,44 @@
 <template>
+
+    
 <!-- unfold 展开事件 -->
     <div class="insur-wrapper">
          <div class="insur-info-wrapper">
              <div class="proj-info">
                  <h3>项目信息</h3>
                  <ul class="list-title">
-                     <li>项目名称:
+                     <li class="item-title">
+                         项目名称:
                          <span>{{ proj_info.project_name}}</span>
                      </li>
-                     <li>目标筹款金额:
+                     <li  class="item-title">
+                         目标筹款金额:
                          <span>{{proj_info.project_money}} 元</span>
                      </li>
                  </ul>
                  <ul class="list-detail" v-if="flag == 1">
-                     <li>项目发布平台：</li>
+                     <li class="item-title">项目发布平台：</li>
                      <li class="info">
                          <a :href="proj_info.project_url"><i class="el-icon-share"></i>点击查看</a>
                      </li>
 
-                     <li>项目筹款时间：</li>
+                     <li class="item-title">项目筹款时间：</li>
                      <li class="info"> {{ proj_info.project_raise_money_time }}天</li>
 
-                     <li>项目持续时间：</li>
+                     <li class="item-title">项目持续时间：</li>
                      <li class="info"> {{ insur.insurance_valid_time }}天 </li>
 
-                     <li>筹款存放银行：</li>
+                     <li class="item-title">筹款存放银行：</li>
                      <li class="info">
                          {{ proj_info.project_bank }}
                      </li>
 
-                     <li>银行账号： </li>
+                     <li class="item-title">银行账号： </li>
                      <li class="info">
                          {{ proj_info.project_bank_account }}
                      </li>
 
-                     <li id="proj-reason">公益项目简介：</li>
+                     <li id="proj-reason"  class="item-title">公益项目简介：</li>
                      <div class="info">
                          <p>{{ proj_info.project_reason }}</p>
                      </div>
@@ -44,26 +48,26 @@
              <div class="org-info">
                  <h3>投保人信息</h3>
                  <ul class="list-title">
-                     <li>公益组织:
+                     <li class="item-title">公益组织:
                          <span> {{applicant.organization}} </span>
                      </li>
-                     <li>公益组织代码:
+                     <li class="item-title">公益组织代码:
                          <span> {{applicant.org_id}} </span>
                      </li>
                  </ul>
                  <ul class="list-detail" v-if="flag == 1">
-                     <li>地址:</li>
+                     <li class="item-title">地址:</li>
                      <li class="info"> {{ applicant.address }} </li>
 
-                     <li>项目负责人：</li>
+                     <li class="item-title">项目负责人：</li>
                      <li class="info"> {{ applicant.principal_name }} </li>
 
-                     <li>负责人证件信息：</li>
+                     <li class="item-title">负责人证件信息：</li>
                      <li class="info"> {{ applicant.principal_ident_info }} </li>
 
-                     <li>负责人电话：</li>
+                     <li class="item-title">负责人电话：</li>
                      <li class="info"> {{ applicant.principal_phone }} </li>
-                     <li>负责人邮箱：</li>
+                     <li class="item-title">负责人邮箱：</li>
                      <li class="info">] {{ applicant.principal_email }} </li>
                  </ul>
              </div>
@@ -71,29 +75,29 @@
              <div class="recipient-info">
                  <h3>受助人信息</h3>
                  <ul class="list-title">
-                     <li>受助人:
+                     <li class="item-title">受助人:
                          <span> {{insur.recipient[0].name}} </span>
                      </li>
-                     <li>性别:
+                     <li class="item-title">性别:
                          <span> {{insur.recipient[0].sex}} </span>
                      </li>
                  </ul>
                  <ul class="list-detail" v-if="flag == 1">
-                     <li>年龄：</li>
+                     <li class="item-title">年龄：</li>
                      <li class="info"> {{recip[0].birthday}} </li>
 
-                     <li>证件信息：</li>
+                     <li class="item-title">证件信息：</li>
                      <li class="info"> {{recip[0].certification_type}} </li>
 
-                     <li>住址：</li>
+                     <li class="item-title">住址：</li>
                      <li class="info"> {{ recip[0].address }} </li>
 
-                     <li>联系电话：</li>
+                     <li class="item-title">联系电话：</li>
                      <li class="info"> {{ recip[0].phone }} </li>
 
-                     <li>银行账户：</li>
+                     <li class="item-title">银行账户：</li>
                      <li class="info"> {{ recip[0].bank_account }} </li>
-                     <li>受助原因：</li>
+                     <li class="item-title">受助原因：</li>
                      <div class="info">
                          <p> {{recip[0].reason}} </p>
                      </div>
@@ -104,7 +108,7 @@
         <div class="buttons">
             <el-button type="primary" :icon="insur_box_icon" @click="changeBoxStatus">{{insur_box_status}}</el-button> 
             <el-button type="success" icon="el-icon-check" @click="setResult('1')">通过</el-button>
-            <el-button type="warning" icon="el-icon-circle-close" @click="setResult('-1')">拒绝</el-button>
+            <el-button type="info" icon="el-icon-circle-close" @click="setResult('-1')">拒绝</el-button>
         </div>
 
     </div>
@@ -165,7 +169,7 @@ export default {
                 "censor_state": this.censor_state
             }
             // 异步请求
-            var url = 'http://10.64.111.98:8080/WillBLOCK/thirdOrgIndex/censorInsurance ';
+            var url = 'http://114.67.105.154:9090/WillBLOCK/thirdOrgIndex/censorInsurance ';
             this.axios({
                 method: "post",
                 data: data,
@@ -213,11 +217,14 @@ export default {
     height: 600px;
 }
 li{
-    color: #333;
+    color: #444;
     font-size: 17px;
+    /* font-weight: bold; */
 }
 .list-title span{
     padding-left: 20px;
+    font-weight: 400;
+    color: #777;
 }
 
 .info,
@@ -232,6 +239,9 @@ li{
 .info p{
     margin:0;
 }
+.item-title{
+    font-weight: bold;
+}
 #proj-reason{
     margin-top: 15px;
 }
@@ -243,20 +253,25 @@ li{
 .el-button{
     margin-top: 50px;
 }
-h3{
+/* h3{
     text-align: center;
-}
+    
+} */
 .proj-info h3{
     color: #1b95db;
+   
 }
 .org-info h3{
-    color: #e96857;
+    color: #1b95db;
 }
 .recipient-info h3{
-    color: #f8bf01;
+    color: #1b95db;
 }
 ul li{
     list-style-type:none;
+}
+ul{
+    padding-left: 0px;
 }
 .insur-wrapper{
     width: 85%;
@@ -274,11 +289,12 @@ ul li{
 .org-info,
 .proj-info,
 .recipient-info{
+    padding-left: 10px;
     float: left;
-    width:31%;
+    width:30%;
     height: 98%;
-    margin:0% 1%;
-   border-left: 1px #dddddd solid;
+    border-left: 1px #dddddd dotted;
+    margin-left: 20px;
    
 }
 </style>

@@ -87,7 +87,7 @@ export default {
                     {index: 3, content: "公益项目时间 ≤ 720天" },
                     {index: 4, content: "720天 ≤ 公益项目时间"}  
                 ],
-            calPrice_url: "http://10.64.111.98:8080/WillBLOCK/calPremium ",
+            calPrice_url: "http://114.67.105.154:9090/WillBLOCK/calPremium ",
             proj_money: "",
             // 表示用户填写保单是否错误
             // 默认：false
@@ -234,22 +234,23 @@ export default {
 .cal-table{
     width: 88%;
     margin: 50px auto;
-    padding: 20px 20px;
+    padding: 20px 0px;
     border-radius: 10px;
-    background-color: #eeeeee;
+    background-color: #ffffff;
     opacity: 0.9;
+    margin-left: 0px;
 }
 
 .cal-table-wrapper{
     border-left: 1px solid #999;
-    padding: 30px 0 30px 40px;
+    padding-left: 40px;
 }
 
 .cal-form-item p {
     display: inline-block;
     width: 28%;
     min-width: 240px;
-    font-size: 17px;
+    font-size: 18px;
     color: #222222;
 }
 .cal-form-item .el-input{
@@ -257,6 +258,10 @@ export default {
     width: 30%;
 }
 .cal-form-item .el-button{
-    margin-left: 100px;
+    margin-left: 120px;
+}
+p{
+    font-weight: bold;
+
 }
 </style>

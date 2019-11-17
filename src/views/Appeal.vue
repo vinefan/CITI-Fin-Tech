@@ -139,7 +139,7 @@ export default {
 			// jiami
 			// appeal.donor_pwd = this.rsaEncrypt(appeal.donor_pwd);
 			
-			var url = "http://192.168.1.102:8080/WillBLOCK/receiveAppeal" ;
+			var url = "http://114.67.105.154:9090/WillBLOCK/receiveAppeal" ;
 			this.axios({
 				method: 'post',
 				data: appeal,
@@ -184,7 +184,7 @@ export default {
 	font-size: 18px;
 }
 .appeal-box h3{
-	color:#333;
+	color:rgb(37, 107, 212);
 
 }
 .appeal-box .el-input{
@@ -203,8 +203,8 @@ export default {
 	margin: auto;
 	border: 1px #dddddd solid;
 	border-radius: 7px;
-	background: #eeeeee;
-	opacity: 0.92;
+	background: #ffffff;
+	opacity: 0.95;
 	box-shadow: #efefef 1px 1px 8px 8px;
 	padding-left: 20px;
 }

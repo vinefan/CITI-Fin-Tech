@@ -302,7 +302,7 @@ export default {
 			// 异步发送保单信息
 			this.axios({
 				method: "post",
-				url: "http://10.64.111.98:8080/WillBLOCK/receiveForm",
+				url: "http://114.67.105.154:9090/WillBLOCK/receiveForm",
 				data: this.form
 				})
 				.then((response)=> {
@@ -365,17 +365,14 @@ export default {
 }
 
 h2{
-	color: rgb(247, 107, 14);
+	color: rgb(36, 150, 243);
 	
 	font-weight: 400;
 }
 .insurance-form {
 	width: 88%;
-	margin: 50px auto;
-	padding: 20px 20px;
 	border-radius: 10px;
-	background-color: #eeeeee;
-	opacity: 0.9;
+	margin-top: 130px;
 }
 
 .form-item{
@@ -395,7 +392,7 @@ h2{
 
 h3,
 h5{
-	color: steelblue;
+	color: rgb(36, 150, 243);
 }
 h3{
 	font-size: 24px;
@@ -420,13 +417,16 @@ h5{
 }
 .fee span{
 	font-size: 20px;
-	color: rgb(243, 161, 53);
+	color: rgb(36, 150, 243);
 }
 .date-claim-title{
 	width: 10% !important;
 }
 .date-claim{
 	width: 80% !important;
-	color: rgb(207, 75, 52);
+	color: rgb(240, 36, 0);
+}
+p{
+	font-weight: bold;
 }
 </style>

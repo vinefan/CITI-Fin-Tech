@@ -165,7 +165,7 @@ a {
   width: 92%;
   height: auto;
   margin: auto;
-  margin-top: 150px;
+  /* margin-top: 150px; */
   /* text-align: center; */
 
 }

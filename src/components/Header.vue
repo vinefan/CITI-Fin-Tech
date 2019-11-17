@@ -12,9 +12,8 @@
                     @click="search(index)"
                     v-bind:class="{ 'active': item.active }"
                     target="_blank">
-                        <i :class="item.icon">
-                            {{item.title}}
-                        </i>
+                        <i v-bind:class="item.icon"></i>
+                        {{item.title}}
                 </a>
             </template>
         </div>
@@ -27,26 +26,26 @@
         data: function () {
             return {
                 items: [{
-                        icon: "el-icon-tickets",
-                        title: "投保 | ",
+                        icon: "el-icon-s-order",
+                        title: "投保 ",
                         active: false,
                         href: "/insure"
                     },
                     {
-                        icon: "el-icon-paperclip",
-                        title: "申述 | ",
+                        icon: "el-icon-s-custom",
+                        title: "申述  ",
                         active: false,
                         href: "/appeal"
                     }, 
                     {
                         icon: "el-icon-s-check",
-                        title: "审核 |",
+                        title: "审核 ",
                         active: false,
                         href: "/check"
                     },
                     {
-                        icon: "el-icon-view",
-                        title: "查询 |",
+                        icon: "el-icon-s-data",
+                        title: "查询 ",
                         active: false,
                         href: ""
                     }
@@ -72,55 +71,58 @@
 <style scoped>
     #header{
         
-        background-color: #ebecec;
-        position: fixed;
-        width: 100%;
-        left: 0;
-        top: 0;
-        min-width: 1200px;
+        background-color: #ffffff;
+        width: 76%;
+        margin: auto;
+        height: 80px;
+        min-width: 1000px;
+        border-radius: 10px;
 
         /* 顶部header透明 */
-        filter: alpha(opacity=90);
+        filter: alpha(opacity=75);
         /* IE */
-        -moz-opacity: 0.8;
+        -moz-opacity: 0.75;
         /* Firefox */
-        opacity: 0.8;
+        opacity: 0.75;
         /* others */
-
-
-
     }
     #logo{
-        width: 320px;
-        height: 100px;
+        width: 120px;
+        height: 80px;
         float: left;
         color:steelblue;
         margin-left: 50px;
         background: url('../assets/header_logo.png') center center no-repeat;
-        background-size: 100%;
-        background-position-y: -50px;
+        background-size: 120px 113px;
+        background-position-y: -5px;
     }
 
     #menu{
         
         float: right;
-        font-size: 24px;
+        font-size: 26px;
+        font-family: Arial, Helvetica, sans-serif !important;
+        text-decoration: none; 
         width: 500px;
         height: 90%;
         color: #333;
-        margin-top: 40px;
-        margin-right: 35px;
+        margin-top: 20px;
+        padding-right: 20px;
+        opacity: 1;
     }
 
     a{
-        color: #111;
+        color: #222;
         display: inline-block;
-        width: 105px;
+        width: 122px;
+        text-decoration: none;
+        /* font-weight: bold; */
+
     }
 
     .active{
-        color: rgb(37, 89, 168);
-        font-size: 24px;
+        color: rgb(42, 124, 248);
+        font-size: 26px;
         
     }
 </style>

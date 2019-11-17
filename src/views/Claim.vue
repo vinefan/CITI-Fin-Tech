@@ -1,6 +1,6 @@
 <template>
 	<div class="claim">
-       <img src="../assets/claimpic.jpg" class="imgDiv">
+       <img src="../assets/claimpic2.png" class="imgDiv">
        
     </div>
 </template>

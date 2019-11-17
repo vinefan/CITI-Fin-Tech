@@ -94,7 +94,7 @@ export default {
                 return;
             }
             // 发送请求
-            var url = "http://10.64.111.98:8080/WillBLOCK/tree/moneypath";
+            var url = "http://114.67.105.154:9090/WillBLOCK/tree/moneypath";
             this.axios({
                 method: "post",
                 data: data,
@@ -168,6 +168,7 @@ export default {
 .info-item h4{
     color: #1574e0;
     margin-bottom: 10px;
+    text-align: left;
 }
 .money-tree-wrapper{
     width: 88%;
@@ -180,21 +181,25 @@ export default {
 }
 .tree{
     float: left;
-    width: 53%;
-    min-width: 580px;
+    width: 46%;
+    min-width: 500px;
     margin: 20px 0px;
     height: 400px;
     background: url('../../assets/money_tree.png')  no-repeat;
     background-position-y: -40px;
     background-position-x: -40px;
-    background-size: 720px 400px;
-    border-right: 1px solid #dddddd;
+    background-size: 610px 400px;
+    border-right: 1px dotted #dddddd;
 }
 .info{
     display: inline-block;
     width: 43%;
     height: 380px;
     margin-top: 20px;
-   
+    padding-left: 30px;
+}
+.info p{
+    padding-left: 5px;
+    color: #444
 }
 </style>

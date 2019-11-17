@@ -2,7 +2,6 @@
 	<div id="cases-wrapper">
         <div class="search">
             <el-row :gutter="40">
-                
                 <el-col :span="12">
                     <el-input placeholder="请输入被保项目名" v-model="input" clearable>
                     </el-input>
@@ -14,11 +13,10 @@
                         搜索
                     </el-button>
                 </el-col>
-            </el-row>
-            
+            </el-row> 
         </div>
         
-        
+        <!-- 错误提示 -->
         <div v-if="!error">
             <insurance-case 
                 v-for="(item, index) in items" 
@@ -33,8 +31,6 @@
 </template>
 
 <script>
-// import HelloWorld from "../components/HelloWorld"
-// 组件名驼峰写法， html中可以替换成<hello-world>
 
 import InsuranceCase from "../components/InsuranceCase"
 
@@ -80,11 +76,12 @@ import InsuranceCase from "../components/InsuranceCase"
             InsuranceCase
         },
         methods: {
+            // 查询慈善项目
             search: function() {
                 var project = { "proj_name": this.input };
                 this.axios({
                     method: 'post',
-                    url: 'http://192.168.1.102:8080/WillBLOCK/search',
+                    url: 'http://114.67.105.154:9090/WillBLOCK/search',
                     data: project
                     })
                     .then((response)=> {
@@ -100,7 +97,7 @@ import InsuranceCase from "../components/InsuranceCase"
         mounted() {
             
             this.axios
-                .get('http://192.168.1.102:8080//WillBLOCK/index')
+                .get('http://114.67.105.154:9090/WillBLOCK/index')
                 .then(response => {
                       this.error = false;
                       this.items = response.data;    
@@ -117,7 +114,7 @@ import InsuranceCase from "../components/InsuranceCase"
 
 <style scoped>
 #cases-wrapper{
-    width: 70%;
+    width: 76%;
     margin: auto;
 }
 .search{
